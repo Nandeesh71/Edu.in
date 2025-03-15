@@ -1,4 +1,6 @@
-                                                              CSE - ( AI & ML )
+CSE - ( AI & ML ) "B"
+
+SEC24AM0??
 
 1. Find Minimum in a List
 
