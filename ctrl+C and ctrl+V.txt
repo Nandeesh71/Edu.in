@@ -1,6 +1,6 @@
-CSE - ( AI & ML ) "B"
+CSE - ( AI & ML ) SEC24AM0??
 
-SEC24AM0??
+Print(" Thank Me Later ... ! ")
 
 1. Find Minimum in a List
 
