@@ -286,8 +286,21 @@ try:
         for line in file:
             print(f"Line {line_number}: {line.strip()}")
             line_number += 1
+
 except FileNotFoundError:
     print("Error: The file 'file.txt' was not found.")
+
+except EOFError:
+    print("Error: Reached end of file unexpectedly.")
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+Input:
+Create a .txt file named file.txt and enter
+Hello, this is line 1.
+This is line 2.
+Here comes line 3.
 
 Output:
 
@@ -299,14 +312,29 @@ ________________________________________
 
 try:
     with open('students.txt', 'r') as file:
-        records = [line.strip().split(',') for line in file]
-        sorted_records = sorted(records, key=lambda x: x[0])
+        records = []
+        for line in file:
+            name, age = line.strip().split(',')
+            records.append((name.strip(), int(age.strip())))
+
+    sorted_records = sorted(records, key=lambda x: x[0])
 
     print("Student Records in Sorted Order by Name:")
-    for name, age in sorted_records:
-        print(f"Name: {name}, Age: {age}")
+    for record in sorted_records:
+        print(f"Name: {record[0]}, Age: {record[1]}")
+
 except FileNotFoundError:
-    print("Error: The file 'students.txt' was not found.")
+    print("Error: The file 'students.txt' was not found. Please check the file path and try again.")
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+Input:
+Create a .txt file named students.txt and enter 
+Charlie, 21
+Alice, 20
+Bob, 19
+David, 22
 
 Output:
 
@@ -322,40 +350,106 @@ import numpy as np
 matrix1 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 matrix2 = np.array([[9, 8, 7], [6, 5, 4], [3, 2, 1]])
 
-addition = matrix1 + matrix2
-multiplication = np.dot(matrix1, matrix2)
-transpose = np.transpose(matrix1)
+print("Matrix 1:")
+print(matrix1)
 
-print("Matrix Addition:\n", addition)
-print("Matrix Multiplication:\n", multiplication)
-print("Transpose of Matrix 1:\n", transpose)
+print("\nMatrix 2:")
+print(matrix2)
+
+addition = matrix1 + matrix2
+print("\nMatrix Addition:")
+print(addition)
+
+subtraction = matrix1 - matrix2
+print("\nMatrix Subtraction:")
+print(subtraction)
+
+multiplication = np.dot(matrix1, matrix2)
+print("\nMatrix Multiplication:")
+print(multiplication)
+
+transpose = np.transpose(matrix1)
+print("\nTranspose of Matrix 1:")
+print(transpose)
+
 ________________________________________
 19. Perform DataFrame Operations Using Pandas
 
 import pandas as pd
 
-data = {'Name': ['Alice', 'Bob', 'Charlie'],
-        'Age': [24, 27, 22],
-        'Salary': [50000, 60000, 45000]}
-
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+    'Age': [24, 27, 22, 25],
+    'Department': ['HR', 'Finance', 'IT', 'Marketing'],
+    'Salary': [50000, 60000, 45000, 55000]
+}
 df = pd.DataFrame(data)
-df['Bonus'] = df['Salary'] * 0.1
 
-print("DataFrame after adding Bonus column:\n", df)
+print("Original DataFrame:")
+print(df)
+
+print("\nNames of employees:")
+print(df['Name'])
+
+print("\nDetails of the first employee:")
+print(df.loc[0])
+
+print("\nEmployees with Salary > 50000:")
+print(df[df['Salary'] > 50000])
+
+print("\nSummary statistics for numerical columns:")
+print(df.describe())
+
+df['Bonus'] = df['Salary'] * 0.1
+print("\nDataFrame after adding 'Bonus' column:")
+print(df)
+
+df.loc[df['Name'] == 'Alice', 'Age'] = 25
+print("\nDataFrame after updating Alice's age:")
+print(df)
+
+df = df.drop('Department', axis=1)
+print("\nDataFrame after dropping 'Department' column:")
+print(df)
+
 ________________________________________
 20. Visualizing Dataset Using Matplotlib
 
 import matplotlib.pyplot as plt
 import pandas as pd
 
-data = {'Year': [2017, 2018, 2019, 2020, 2021],
-        'Sales': [250, 340, 290, 410, 460]}
+data = {
+    'Year': [2017, 2018, 2019, 2020, 2021],
+    'Sales': [250, 340, 290, 410, 460],
+    'Profit': [50, 80, 60, 120, 150]
+}
+
 df = pd.DataFrame(data)
 
-plt.plot(df['Year'], df['Sales'], marker='o', label='Sales')
+plt.figure(figsize=(8, 6))
+plt.plot(df['Year'], df['Sales'], color='blue', marker='o', label='Sales')
 plt.title('Yearly Sales Trend')
 plt.xlabel('Year')
 plt.ylabel('Sales')
 plt.legend()
 plt.grid()
 plt.show()
+
+plt.figure(figsize=(8, 6))
+plt.scatter(df['Sales'], df['Profit'], color='green', label='Profit vs Sales')
+plt.title('Sales vs Profit')
+plt.xlabel('Sales')
+plt.ylabel('Profit')
+plt.legend()
+plt.grid()
+plt.show()
+
+plt.figure(figsize=(8, 6))
+plt.bar(df['Year'], df['Profit'], color='orange', label='Profit')
+plt.title('Yearly Profit')
+plt.xlabel('Year')
+plt.ylabel('Profit')
+plt.legend()
+plt.grid()
+plt.show()
+
