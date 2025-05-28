@@ -1,0 +1,2633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <title>Nandeesh S - AI/ML Engineer Portfolio</title>
+    <style>
+        /* Enhanced Apple-inspired design system with maximum animations */
+        :root {
+            --apple-white: #ffffff;
+            --apple-black: #1d1d1f;
+            --apple-gray: #86868b;
+            --apple-light-gray: #f5f5f7;
+            --apple-blue: #0071e3;
+            --apple-dark-blue: #0058b0;
+            --apple-dark-gray: #424245;
+            --apple-purple: #5856d6;
+            --apple-green: #30d158;
+            --apple-orange: #ff9500;
+            --apple-red: #ff3b30;
+            --apple-yellow: #ffcc02;
+            --font-apple: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition-bounce: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.25);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-apple);
+            color: var(--apple-black);
+            background-color: var(--apple-white);
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            border-radius: 50%;
+            animation: float-particle 20s infinite linear;
+            box-shadow: 0 0 10px rgba(0, 113, 227, 0.3);
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced Header */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-smooth);
+            transform: translateY(-100%);
+            animation: slideDown 1s forwards 0.5s;
+        }
+
+        @keyframes slideDown {
+            to { transform: translateY(0); }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 15px rgba(0, 113, 227, 0.4));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            color: var(--apple-black);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+            padding: 10px 0;
+        }
+
+        .nav-links a:nth-child(1) { animation-delay: 0.7s; }
+        .nav-links a:nth-child(2) { animation-delay: 0.8s; }
+        .nav-links a:nth-child(3) { animation-delay: 0.9s; }
+        .nav-links a:nth-child(4) { animation-delay: 1s; }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--apple-blue);
+            transform: translateY(-3px);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 0 30px;
+            background: var(--gradient-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 70%, rgba(0, 113, 227, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(88, 86, 214, 0.3) 0%, transparent 50%);
+            animation: morphBackground 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes morphBackground {
+            0% { 
+                background: radial-gradient(circle at 30% 70%, rgba(0, 113, 227, 0.3) 0%, transparent 50%),
+                           radial-gradient(circle at 70% 30%, rgba(88, 86, 214, 0.3) 0%, transparent 50%);
+            }
+            100% { 
+                background: radial-gradient(circle at 70% 30%, rgba(0, 113, 227, 0.4) 0%, transparent 60%),
+                           radial-gradient(circle at 30% 70%, rgba(88, 86, 214, 0.4) 0%, transparent 60%);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(52px, 8vw, 80px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 25px;
+            color: white;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: heroTextReveal 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 1.2s;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h2 {
+            font-size: clamp(26px, 4vw, 36px);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroTextReveal 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 1.5s;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes heroTextReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 19px;
+            font-weight: 700;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px) scale(0.8);
+            animation: buttonReveal 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 1.8s;
+            box-shadow: 0 20px 40px rgba(0, 113, 227, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes buttonReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 30px 60px rgba(0, 113, 227, 0.5);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Work Section */
+        .section {
+            padding: 140px 30px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(44px, 6vw, 64px);
+            font-weight: 800;
+            margin-bottom: 100px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+            background: linear-gradient(45deg, var(--apple-black), var(--apple-dark-gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            margin: 30px auto 0;
+            transform: scaleX(0);
+            transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
+            border-radius: 3px;
+        }
+
+        .section-title.visible::after {
+            transform: scaleX(1);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 50px;
+        }
+
+        .work-item {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            position: relative;
+            cursor: pointer;
+            box-shadow: var(--shadow-light);
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+            animation: workItemReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .work-item:nth-child(1) { animation-delay: 0.1s; }
+        .work-item:nth-child(2) { animation-delay: 0.2s; }
+        .work-item:nth-child(3) { animation-delay: 0.3s; }
+        .work-item:nth-child(4) { animation-delay: 0.4s; }
+        .work-item:nth-child(5) { animation-delay: 0.5s; }
+        .work-item:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes workItemReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .work-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 113, 227, 0.08), rgba(88, 86, 214, 0.08));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .work-item:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .work-item:hover::before {
+            opacity: 1;
+        }
+
+        .work-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .work-item:hover .work-image {
+            transform: scale(1.08);
+            filter: brightness(1.15) saturate(1.2);
+        }
+
+        .work-content {
+            padding: 35px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .work-content h3 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: var(--apple-dark-gray);
+            position: relative;
+            padding-bottom: 18px;
+        }
+
+        .work-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 2px;
+        }
+
+        .work-item:hover .work-content h3::after {
+            width: 120px;
+        }
+
+        .work-content p {
+            color: var(--apple-gray);
+            margin-bottom: 30px;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .work-link {
+            color: white;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 113, 227, 0.3);
+            font-size: 16px;
+        }
+
+        .work-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .work-link:hover {
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 20px 40px rgba(0, 113, 227, 0.5);
+        }
+
+        .work-link:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced About Section */
+        .about {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .profile-container {
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: var(--shadow-heavy);
+            transition: var(--transition-bounce);
+            border: 8px solid white;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-text h2 {
+            font-size: clamp(40px, 5vw, 56px);
+            margin-bottom: 35px;
+            color: var(--apple-dark-gray);
+            font-weight: 800;
+        }
+
+        .about-text p {
+            font-size: 19px;
+            line-height: 1.8;
+            color: var(--apple-gray);
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .about-text p:nth-child(2) { animation-delay: 0.2s; }
+        .about-text p:nth-child(3) { animation-delay: 0.4s; }
+        .about-text p:nth-child(4) { animation-delay: 0.6s; }
+
+        /* Enhanced Skills Section with Real Logos */
+        .skills {
+            background: var(--gradient-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: skillsBackground 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes skillsBackground {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(3deg); }
+        }
+
+        .skills .section-title {
+            color: white;
+            background: linear-gradient(45deg, white, rgba(255, 255, 255, 0.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skills .section-title::after {
+            background: linear-gradient(45deg, white, rgba(255, 255, 255, 0.8));
+        }
+
+        .skills-category {
+            margin-bottom: 100px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skills-category h3 {
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.2s ease forwards;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Programming Languages with Real Logos */
+        .programming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .programming-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: var(--transition-bounce);
+            opacity: 0;
+            transform: translateY(40px) scale(0.9);
+            animation: skillReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .programming-item:nth-child(1) { animation-delay: 0.1s; }
+        .programming-item:nth-child(2) { animation-delay: 0.2s; }
+        .programming-item:nth-child(3) { animation-delay: 0.3s; }
+        .programming-item:nth-child(4) { animation-delay: 0.4s; }
+        .programming-item:nth-child(5) { animation-delay: 0.5s; }
+        .programming-item:nth-child(6) { animation-delay: 0.6s; }
+        .programming-item:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes skillReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .programming-item:hover {
+            transform: translateY(-15px) scale(1.08);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.25);
+        }
+
+        .programming-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 20px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .programming-item:hover .programming-icon {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        .programming-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Real Logo URLs for Programming Languages */
+        .python-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'); }
+        .r-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg'); }
+        .java-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg'); }
+        .cpp-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg'); }
+        .html-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg'); }
+        .css-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg'); }
+        .js-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'); }
+
+        /* Frameworks & Libraries with Floating Animation */
+        .frameworks-container {
+            position: relative;
+            height: 350px;
+            margin: 80px 0;
+            overflow: hidden;
+        }
+
+        .framework-item {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .framework-item:hover {
+            transform: scale(1.15);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.25);
+        }
+
+        /* Floating positions and animations */
+        .framework-item:nth-child(1) {
+            top: 30px;
+            left: 8%;
+            animation: float1 7s ease-in-out infinite;
+        }
+
+        .framework-item:nth-child(2) {
+            top: 100px;
+            right: 12%;
+            animation: float2 8s ease-in-out infinite;
+        }
+
+        .framework-item:nth-child(3) {
+            bottom: 100px;
+            left: 18%;
+            animation: float3 9s ease-in-out infinite;
+        }
+
+        .framework-item:nth-child(4) {
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float4 7.5s ease-in-out infinite;
+        }
+
+        .framework-item:nth-child(5) {
+            bottom: 50px;
+            right: 22%;
+            animation: float5 8.5s ease-in-out infinite;
+        }
+
+        .framework-item:nth-child(6) {
+            top: 150px;
+            left: 22%;
+            animation: float6 9.5s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(8deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(-5deg); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(6deg); }
+        }
+
+        @keyframes float4 {
+            0%, 100% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+            50% { transform: translateX(-50%) translateY(-22px) rotate(-3deg); }
+        }
+
+        @keyframes float5 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-28px) rotate(10deg); }
+        }
+
+        @keyframes float6 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(-7deg); }
+        }
+
+        .framework-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-bounce);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .framework-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Real Logo URLs for Frameworks */
+        .sklearn-icon { background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg'); }
+        .tensorflow-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg'); }
+        .pytorch-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg'); }
+        .numpy-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg'); }
+        .matplotlib-icon { background-image: url('https://matplotlib.org/stable/_images/sphx_glr_logos2_003.png'); }
+        .pandas-icon { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg'); }
+
+        /* Fields of Interest */
+        .fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+
+        .field-item {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: var(--transition-bounce);
+            opacity: 0;
+            transform: translateX(-40px);
+            animation: slideInLeft 1.2s ease forwards;
+        }
+
+        .field-item:nth-child(1) { animation-delay: 0.1s; }
+        .field-item:nth-child(2) { animation-delay: 0.2s; }
+        .field-item:nth-child(3) { animation-delay: 0.3s; }
+        .field-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .field-item:hover {
+            transform: translateX(15px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.25);
+        }
+
+        .field-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+            transition: var(--transition-bounce);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .field-item:hover .field-icon {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        .field-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Soft Skills */
+        .soft-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .soft-skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: var(--transition-bounce);
+            opacity: 0;
+            transform: translateY(40px) scale(0.9);
+            animation: skillReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .soft-skill-item:nth-child(1) { animation-delay: 0.1s; }
+        .soft-skill-item:nth-child(2) { animation-delay: 0.2s; }
+        .soft-skill-item:nth-child(3) { animation-delay: 0.3s; }
+        .soft-skill-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .soft-skill-item:hover {
+            transform: translateY(-15px) scale(1.08);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.25);
+        }
+
+        .soft-skill-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 20px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+            transition: var(--transition-bounce);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .soft-skill-item:hover .soft-skill-icon {
+            transform: scale(1.15) rotate(15deg);
+        }
+
+        .soft-skill-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Enhanced Contact Section */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .contact-link {
+            color: var(--apple-black);
+            text-decoration: none;
+            font-size: 19px;
+            font-weight: 700;
+            padding: 25px 35px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-radius: 25px;
+            transition: var(--transition-bounce);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: contactReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-link:nth-child(1) { animation-delay: 0.1s; }
+        .contact-link:nth-child(2) { animation-delay: 0.2s; }
+        .contact-link:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes contactReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            transition: left 0.8s ease;
+            z-index: -1;
+        }
+
+        .contact-link:hover {
+            color: white;
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .contact-link:hover::before {
+            left: 0;
+        }
+
+        .contact-icon {
+            transition: transform 0.4s ease;
+        }
+
+        .contact-link:hover .contact-icon {
+            transform: scale(1.3) rotate(15deg);
+        }
+
+        /* Enhanced Footer with Resume Download */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            padding: 100px 30px 50px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--apple-blue), var(--apple-purple), transparent);
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .download-resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            color: white;
+            padding: 22px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 113, 227, 0.4);
+            margin-bottom: 50px;
+            border: none;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .download-resume-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .download-resume-btn:hover {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 30px 60px rgba(0, 113, 227, 0.5);
+        }
+
+        .download-resume-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-icon {
+            transition: transform 0.4s ease;
+        }
+
+        .download-resume-btn:hover .download-icon {
+            transform: translateY(5px);
+        }
+
+        .footer-text {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 25px;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Project Detail Styles */
+        .project-detail-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--apple-white);
+            z-index: 1000;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .project-detail-container.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .project-detail-header-nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: saturate(180%) blur(25px);
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .back-button {
+            position: sticky;
+            top: 90px;
+            left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            border: none;
+            border-radius: 35px;
+            padding: 15px 30px;
+            font-family: var(--font-apple);
+            font-size: 17px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            z-index: 1010;
+            box-shadow: var(--shadow-heavy);
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 25px 50px rgba(0, 113, 227, 0.5);
+        }
+
+        .back-button:hover::before {
+            left: 100%;
+        }
+
+        .project-detail {
+            display: none;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 40px 100px;
+            transition: var(--transition-smooth);
+        }
+
+        .project-detail.active {
+            display: block;
+        }
+
+        .project-detail-header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-top: 50px;
+        }
+
+        .project-detail-header h1 {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 800;
+            color: var(--apple-black);
+            line-height: 1.2;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, var(--apple-black), var(--apple-dark-gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .project-detail-image {
+            position: sticky;
+            top: 140px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
+            transition: var(--transition-smooth);
+        }
+
+        .project-detail-image:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-detail-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 4s ease;
+        }
+
+        .project-detail-image:hover img {
+            transform: scale(1.08);
+        }
+
+        .project-detail-description h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--apple-black);
+            margin: 50px 0 25px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .project-detail-description h2:first-child {
+            margin-top: 0;
+        }
+
+        .project-detail-description h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            border-radius: 2px;
+        }
+
+        .project-detail-description p {
+            font-size: 19px;
+            line-height: 1.8;
+            color: var(--apple-gray);
+            margin-bottom: 30px;
+        }
+
+        .project-detail-description ul {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .project-detail-description ul li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 18px;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--apple-gray);
+        }
+
+        .project-detail-description ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 14px;
+            height: 14px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .project-detail-description ul li:hover::before {
+            transform: scale(1.4);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 25px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .project-detail-link {
+            display: inline-block;
+            padding: 18px 35px;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            color: white;
+            text-decoration: none;
+            border-radius: 35px;
+            font-weight: 700;
+            font-size: 17px;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-detail-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .project-detail-link:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .project-detail-link:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 1000;
+            font-family: var(--font-apple);
+        }
+
+        .chatbot-toggle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-heavy);
+            transition: var(--transition-bounce);
+            animation: chatbotPulse 4s infinite;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes chatbotPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: var(--shadow-heavy);
+            }
+            50% { 
+                transform: scale(1.08);
+                box-shadow: 0 30px 80px rgba(0, 113, 227, 0.4);
+            }
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.15);
+        }
+
+        .chatbot-icon {
+            width: 32px;
+            height: 32px;
+            fill: white;
+            transition: transform 0.4s ease;
+        }
+
+        .chatbot-toggle.active .chatbot-icon {
+            transform: rotate(180deg);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 100px;
+            right: 0;
+            width: 420px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(25px);
+            border-radius: 28px;
+            box-shadow: var(--shadow-heavy);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.8) translateY(30px);
+            opacity: 0;
+            transition: var(--transition-bounce);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .chatbot-window.active {
+            display: flex;
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .chatbot-status {
+            font-size: 15px;
+            opacity: 0.95;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--apple-green);
+            border-radius: 50%;
+            animation: statusPulse 2.5s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .message {
+            max-width: 88%;
+            padding: 18px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(25px);
+            animation: messageSlideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            box-shadow: var(--shadow-light);
+        }
+
+        @keyframes messageSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.bot {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: var(--apple-black);
+            align-self: flex-start;
+            border-bottom-left-radius: 10px;
+        }
+
+        .message.user {
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 10px;
+        }
+
+        .chatbot-options {
+            padding: 25px 30px;
+            border-top: 2px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .option-button {
+            background: rgba(0, 113, 227, 0.12);
+            border: 2px solid rgba(0, 113, 227, 0.3);
+            color: var(--apple-blue);
+            padding: 15px 22px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-align: left;
+            opacity: 0;
+            transform: translateX(-25px);
+            animation: optionSlideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .option-button:nth-child(1) { animation-delay: 0.1s; }
+        .option-button:nth-child(2) { animation-delay: 0.2s; }
+        .option-button:nth-child(3) { animation-delay: 0.3s; }
+        .option-button:nth-child(4) { animation-delay: 0.4s; }
+        .option-button:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes optionSlideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .option-button:hover {
+            background: linear-gradient(45deg, var(--apple-blue), var(--apple-purple));
+            color: white;
+            transform: translateX(8px) scale(1.03);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 1024px) {
+            .project-detail-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .project-detail-image {
+                position: relative;
+                top: 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .frameworks-container {
+                height: 280px;
+            }
+
+            .framework-item {
+                position: relative !important;
+                display: inline-block;
+                margin: 15px;
+                animation: none !important;
+            }
+
+            .frameworks-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                height: auto;
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .hero h2 {
+                font-size: 26px;
+            }
+
+            .section {
+                padding: 100px 25px;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .programming-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .fields-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .soft-skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .chatbot-window {
+                width: 360px;
+                height: 550px;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-smooth);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header navigation -->
+    <header>
+        <nav>
+            <div class="nav-logo" onclick="scrollToTop()">Nandeesh S</div>
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hello, I'm Nandeesh S</h1>
+            <h2>An Artificial Intelligence (AI) & Machine Learning (ML) Engineer</h2>
+            <a href="#work" class="cta-button">View My Work</a>
+        </div>
+    </section>
+
+    <!-- Work portfolio section -->
+    <section id="work" class="section">
+        <h2 class="section-title fade-in-up">My Work</h2>
+        <div class="work-grid">
+            <!-- Project 1 -->
+            <div class="work-item" data-project="1">
+                <img src="https://th.bing.com/th/id/R.98337310ab3ffa7778e3b2f9ace2cc4d?rik=%2bDd1SWGkw3y1hg&riu=http%3a%2f%2fwww.atcrux.com%2fwp-content%2fuploads%2f2012%2f10%2fSensitive-vision-for-blind_1.jpg&ehk=YGXljXwgR7AU%2b%2f8Xd%2bVSrLKYurVXQF6ztW0mMcJOpvo%3d&risl=&pid=ImgRaw&r=0" alt="Echo Vision" class="work-image">
+                <div class="work-content">
+                    <h3>Echo Vision – Smart Assistive Technology</h3>
+                    <p>AI-powered assistive device enhancing navigation, safety, and independence for visually impaired individuals through real-time obstacle detection and facial recognition.</p>
+                    <a href="#" class="work-link" onclick="showProjectDetail(1, event)">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="work-item" data-project="2">
+                <img src="https://repository-images.githubusercontent.com/474572546/d2b783f4-a08f-4b2a-b26b-4989404f9304" alt="Lung Cancer Detection" class="work-image">
+                <div class="work-content">
+                    <h3>Early Lung Cancer Detection Using Deep Learning</h3>
+                    <p>AI-powered system enhancing lung cancer detection through deep learning, biomarker analysis, and genetic profiling for improved diagnosis.</p>
+                    <a href="#" class="work-link" onclick="showProjectDetail(2, event)">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="work-item" data-project="3">
+                <img src="https://www.whoi.edu/wp-content/uploads/2019/02/withship_19424.jpg" alt="Weather Forecasting" class="work-image">
+                <div class="work-content">
+                    <h3>AI-Powered Weather Forecasting for Fishers</h3>
+                    <p>AI-driven early warning system providing small-scale fishers with accurate, localized weather predictions for safer decision-making.</p>
+                    <a href="#" class="work-link" onclick="showProjectDetail(3, event)">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Project 4 -->
+            <div class="work-item" data-project="4">
+                <img src="https://img.freepik.com/premium-photo/solar-panels-rooftop-modern-ecofriendly-building-created-with-generative-ai_419341-19185.jpg" alt="Solar Cold Storage" class="work-image">
+                <div class="work-content">
+                    <h3>Solar Powered Cold Storage System</h3>
+                    <p>Solar-powered cold storage utilizing brine circulation, Phase Change Materials, and IoT automation for sustainable cooling solutions.</p>
+                    <a href="#" class="work-link" onclick="showProjectDetail(4, event)">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Project 5 -->
+            <div class="work-item" data-project="5">
+                <img src="https://psiborg.in/wp-content/uploads/2024/01/early-warning-of-landslides-thegem-blog-timeline-large.webp" alt="Landslide Rescue" class="work-image">
+                <div class="work-content">
+                    <h3>AI Multi-Sensor Rescue System</h3>
+                    <p>Intelligent multi-sensor rescue system integrating advanced sensing technologies and machine learning for landslide survivor detection.</p>
+                    <a href="#" class="work-link" onclick="showProjectDetail(5, event)">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Project 6 -->
+            <div class="work-item" data-project="6">
+                <img src="https://pubs.acs.org/cms/10.1021/acssuschemeng.2c05455/asset/images/medium/sc2c05455_0012.gif" alt="NanoGold" class="work-image">
+                <div class="work-content">
+                    <h3>NanoGold: Sustainable Gold Recovery</h3>
+                    <p>Sustainable e-waste recycling solution using nanotechnology, plasma arc systems, and microbial techniques for efficient gold extraction.</p>
+                    <a href="#" class="work-link" onclick="showProjectDetail(6, event)">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About section -->
+    <section id="about" class="section about">
+        <h2 class="section-title fade-in-up">About Me</h2>
+        <div class="about-content">
+            <div class="profile-container">
+                <img src="https://wallpaperaccess.com/full/10678165.png" alt="Nandeesh Profile" class="profile-image">
+            </div>
+            <div class="about-text">
+                <h2>Passionate AI Engineer</h2>
+                <p>I'm Nandeesh S, an AI enthusiast passionate about Machine Learning, Deep Learning, and Neural Networks with a vision to revolutionize technology through innovative AI solutions.</p>
+                <p>Currently pursuing B.E Computer Science Engineering specialized in Artificial Intelligence (AI) & Machine Learning (ML) at Sri Sairam Engineering College, where I'm developing cutting-edge projects that address real-world challenges.</p>
+                <p>My journey in AI is driven by the belief that technology should serve humanity. From assistive technologies for the visually impaired to early cancer detection systems, I focus on creating solutions that make a meaningful impact on people's lives.</p>
+                <p>I aim to develop my dream AI project Tracyeee - a general AI system that will revolutionize human-computer interaction and push the boundaries of what's possible in artificial intelligence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Skills section with Real Logos -->
+    <section id="skills" class="section skills">
+        <h2 class="section-title fade-in-up">My Skills</h2>
+        
+        <!-- Programming Languages with Real Logos -->
+        <div class="skills-category">
+            <h3>Programming Languages</h3>
+            <div class="programming-grid">
+                <div class="programming-item">
+                    <div class="programming-icon python-icon"></div>
+                    <span class="programming-name">Python</span>
+                </div>
+                <div class="programming-item">
+                    <div class="programming-icon r-icon"></div>
+                    <span class="programming-name">R</span>
+                </div>
+                <div class="programming-item">
+                    <div class="programming-icon java-icon"></div>
+                    <span class="programming-name">Java</span>
+                </div>
+                <div class="programming-item">
+                    <div class="programming-icon cpp-icon"></div>
+                    <span class="programming-name">C++</span>
+                </div>
+                <div class="programming-item">
+                    <div class="programming-icon html-icon"></div>
+                    <span class="programming-name">HTML</span>
+                </div>
+                <div class="programming-item">
+                    <div class="programming-icon css-icon"></div>
+                    <span class="programming-name">CSS</span>
+                </div>
+                <div class="programming-item">
+                    <div class="programming-icon js-icon"></div>
+                    <span class="programming-name">JavaScript</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Frameworks & Libraries with Real Logos -->
+        <div class="skills-category">
+            <h3>Frameworks & Libraries</h3>
+            <div class="frameworks-container">
+                <div class="framework-item">
+                    <div class="framework-icon sklearn-icon"></div>
+                    <span class="framework-name">Scikit-learn</span>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-icon tensorflow-icon"></div>
+                    <span class="framework-name">TensorFlow</span>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-icon pytorch-icon"></div>
+                    <span class="framework-name">PyTorch</span>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-icon numpy-icon"></div>
+                    <span class="framework-name">NumPy</span>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-icon matplotlib-icon"></div>
+                    <span class="framework-name">Matplotlib</span>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-icon pandas-icon"></div>
+                    <span class="framework-name">Pandas</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fields of Interest & Professional Expertise -->
+        <div class="skills-category">
+            <h3>Fields of Interest & Professional Expertise</h3>
+            <div class="fields-grid">
+                <div class="field-item">
+                    <div class="field-icon">🤖</div>
+                    <span class="field-name">Artificial Intelligence</span>
+                </div>
+                <div class="field-item">
+                    <div class="field-icon">🧠</div>
+                    <span class="field-name">Machine Learning</span>
+                </div>
+                <div class="field-item">
+                    <div class="field-icon">🔥</div>
+                    <span class="field-name">Deep Learning</span>
+                </div>
+                <div class="field-item">
+                    <div class="field-icon">🕸️</div>
+                    <span class="field-name">Neural Networks</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="skills-category">
+            <h3>Soft Skills</h3>
+            <div class="soft-skills-grid">
+                <div class="soft-skill-item">
+                    <div class="soft-skill-icon">🧩</div>
+                    <span class="soft-skill-name">Problem Solving</span>
+                </div>
+                <div class="soft-skill-item">
+                    <div class="soft-skill-icon">👥</div>
+                    <span class="soft-skill-name">Team Management</span>
+                </div>
+                <div class="soft-skill-item">
+                    <div class="soft-skill-icon">💭</div>
+                    <span class="soft-skill-name">Critical Thinking</span>
+                </div>
+                <div class="soft-skill-item">
+                    <div class="soft-skill-icon">🤝</div>
+                    <span class="soft-skill-name">Collaboration</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section -->
+    <section id="contact" class="section">
+        <h2 class="section-title fade-in-up">Get in Touch</h2>
+        <p class="fade-in-up" style="text-align: center; font-size: 20px; color: var(--apple-gray); max-width: 700px; margin: 0 auto 50px; line-height: 1.7;">
+            Interested in working together? I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision. Let's create something amazing together!
+        </p>
+        <div class="contact-links">
+            <a href="mailto:nandeesh3573@gmail.com" class="contact-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Email
+            </a>
+            <a href="https://linkedin.com/in/nandeesh2808" class="contact-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                LinkedIn
+            </a>
+            <a href="https://github.com/nandeesh71" class="contact-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer with Resume Download -->
+    <footer>
+        <div class="footer-content">
+            <a href="nandeesh-resume.pdf" download="Nandeesh_S_Resume.pdf" class="download-resume-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="download-icon">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7,10 12,15 17,10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Resume
+            </a>
+            <p class="footer-text">© 2025 Nandeesh S. All rights reserved. Built with passion for AI & ML innovation.<br>Transforming ideas into intelligent solutions that shape the future.</p>
+        </div>
+    </footer>
+
+    <!-- Project Detail Container -->
+    <div id="project-detail-container" class="project-detail-container">
+        <!-- Navigation bar for project detail pages -->
+        <header class="project-detail-header-nav">
+            <nav>
+                <div class="nav-logo">Nandeesh S</div>
+                <div class="nav-links">
+                    <a href="#work" onclick="closeProjectDetail(); scrollToSection('work')">Work</a>
+                    <a href="#about" onclick="closeProjectDetail(); scrollToSection('about')">About</a>
+                    <a href="#skills" onclick="closeProjectDetail(); scrollToSection('skills')">Skills</a>
+                    <a href="#contact" onclick="closeProjectDetail(); scrollToSection('contact')">Contact</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Back button -->
+        <button id="back-to-home" class="back-button" onclick="closeProjectDetail()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Home
+        </button>
+
+        <!-- Project 1: Echo Vision -->
+        <div id="project-1" class="project-detail">
+            <div class="project-detail-header">
+                <h1>Echo Vision – Smart Assistive Technology for the Visually Impaired</h1>
+            </div>
+            <div class="project-detail-content">
+                <div class="project-detail-image">
+                    <img src="https://th.bing.com/th/id/R.98337310ab3ffa7778e3b2f9ace2cc4d?rik=%2bDd1SWGkw3y1hg&riu=http%3a%2f%2fwww.atcrux.com%2fwp-content%2fuploads%2f2012%2f10%2fSensitive-vision-for-blind_1.jpg&ehk=YGXljXwgR7AU%2b%2f8Xd%2bVSrLKYurVXQF6ztW0mMcJOpvo%3d&risl=&pid=ImgRaw&r=0" alt="Echo Vision">
+                </div>
+                <div class="project-detail-description">
+                    <h2>Project Overview</h2>
+                    <p>Echo Vision is a revolutionary AI-powered assistive device designed to empower visually impaired individuals with unprecedented independence and safety. This cutting-edge system combines advanced computer vision, machine learning, and IoT technologies to create a comprehensive navigation and assistance solution.</p>
+                    
+                    <h2>The Challenge</h2>
+                    <p>Visually impaired individuals face significant daily challenges in navigation, object recognition, and social interaction. Traditional assistive tools like white canes and guide dogs, while helpful, provide limited environmental information and cannot adapt to complex, dynamic situations.</p>
+                    
+                    <h2>Our Innovative Solution</h2>
+                    <p>Echo Vision integrates multiple advanced technologies to create a comprehensive assistive ecosystem. The system uses depth cameras, ultrasonic sensors, and AI-powered image processing to provide real-time environmental awareness and intelligent assistance.</p>
+                    
+                    <h2>Key Features & Capabilities</h2>
+                    <ul>
+                        <li><strong>Real-time Obstacle Detection:</strong> Advanced computer vision algorithms identify and classify obstacles, providing audio warnings and safe path suggestions</li>
+                        <li><strong>Facial Recognition System:</strong> Recognizes familiar faces and provides social context, enhancing interpersonal interactions</li>
+                        <li><strong>Text-to-Speech Technology:</strong> Reads text from signs, books, menus, and digital displays with high accuracy</li>
+                        <li><strong>Object Recognition & Classification:</strong> Identifies everyday objects, their position, and provides contextual information</li>
+                        <li><strong>Emergency SOS System:</strong> Detects falls, emergencies, and unusual situations, automatically sending alerts to emergency contacts</li>
+                        <li><strong>Multi-language Support:</strong> Functions seamlessly across multiple languages and dialects</li>
+                        <li><strong>Weather & Environmental Alerts:</strong> Provides real-time weather updates and environmental hazard warnings</li>
+                        <li><strong>GPS Navigation Integration:</strong> Offers turn-by-turn navigation with audio guidance for outdoor mobility</li>
+                    </ul>
+                    
+                    <h2>Technology Stack</h2>
+                    <ul>
+                        <li><strong>Deep Learning:</strong> Convolutional Neural Networks (CNNs) for image processing and object recognition</li>
+                        <li><strong>Computer Vision:</strong> OpenCV and TensorFlow for real-time image analysis</li>
+                        <li><strong>Natural Language Processing:</strong> Advanced NLP for text interpretation and voice commands</li>
+                        <li><strong>IoT Integration:</strong> Raspberry Pi and Arduino for sensor data collection and processing</li>
+                        <li><strong>Cloud Computing:</strong> AWS/Google Cloud for data processing and machine learning model training</li>
+                        <li><strong>Mobile Development:</strong> Cross-platform mobile app for configuration and monitoring</li>
+                    </ul>
+                    
+                    <h2>Impact & Future Vision</h2>
+                    <p>Echo Vision represents a paradigm shift in assistive technology, offering visually impaired individuals unprecedented independence and confidence. The system has the potential to transform millions of lives worldwide, breaking down barriers and creating new possibilities for inclusion and empowerment.</p>
+                    
+                    <p>Future developments include integration with smart city infrastructure, enhanced AI capabilities, and expansion into other disability assistance areas.</p>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nandeesh71" class="project-detail-link" target="_blank">View on GitHub</a>
+                        <a href="#contact" class="project-detail-link" onclick="closeProjectDetail(); scrollToSection('contact')">Contact for Collaboration</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2: Lung Cancer Detection -->
+        <div id="project-2" class="project-detail">
+            <div class="project-detail-header">
+                <h1>Early Lung Cancer Detection Using Deep Learning and Biomarker Analysis</h1>
+            </div>
+            <div class="project-detail-content">
+                <div class="project-detail-image">
+                    <img src="https://repository-images.githubusercontent.com/474572546/d2b783f4-a08f-4b2a-b26b-4989404f9304" alt="Lung Cancer Detection">
+                </div>
+                <div class="project-detail-description">
+                    <h2>Project Overview</h2>
+                    <p>This groundbreaking project introduces an AI-powered system for early lung cancer detection that combines medical imaging analysis, biomarker identification, and genetic profiling to achieve unprecedented accuracy in diagnosis and treatment planning.</p>
+                    
+                    <h2>The Medical Challenge</h2>
+                    <p>Lung cancer remains one of the deadliest forms of cancer globally, primarily due to late-stage detection. Traditional screening methods often miss early-stage tumors or produce false positives, leading to delayed treatment and reduced survival rates. Early detection can increase survival rates by up to 90%.</p>
+                    
+                    <h2>Our Revolutionary Approach</h2>
+                    <p>Our system employs advanced deep learning models, including Convolutional Neural Networks (CNNs) and Support Vector Machines (SVMs), to analyze medical scans with superhuman accuracy. By integrating multiple data sources, we can detect cancer at its earliest stages.</p>
+                    
+                    <h2>Advanced Features</h2>
+                    <ul>
+                        <li><strong>Multi-Modal Imaging Analysis:</strong> Processes CT scans, X-rays, and MRI images with 97.3% accuracy</li>
+                        <li><strong>Biomarker Detection:</strong> Identifies specific protein markers and genetic mutations associated with lung cancer</li>
+                        <li><strong>Risk Assessment Algorithm:</strong> Calculates personalized risk scores based on patient history and genetic factors</li>
+                        <li><strong>Tumor Staging & Classification:</strong> Automatically stages tumors and classifies cancer types</li>
+                        <li><strong>Treatment Recommendation Engine:</strong> Suggests optimal treatment protocols based on cancer characteristics</li>
+                        <li><strong>Progression Monitoring:</strong> Tracks treatment response and disease progression over time</li>
+                        <li><strong>Integration with Hospital Systems:</strong> Seamlessly integrates with existing medical infrastructure</li>
+                    </ul>
+                    
+                    <h2>Technical Implementation</h2>
+                    <ul>
+                        <li><strong>Deep Learning Architecture:</strong> Custom CNN models trained on over 100,000 medical images</li>
+                        <li><strong>Data Processing:</strong> Advanced image preprocessing and augmentation techniques</li>
+                        <li><strong>Machine Learning Models:</strong> Ensemble methods combining multiple algorithms for optimal accuracy</li>
+                        <li><strong>Genetic Analysis:</strong> Integration with genomic sequencing data for personalized medicine</li>
+                        <li><strong>Cloud Infrastructure:</strong> Scalable cloud-based processing for real-time analysis</li>
+                        <li><strong>Security & Privacy:</strong> HIPAA-compliant data handling and encryption</li>
+                    </ul>
+                    
+                    <h2>Clinical Impact</h2>
+                    <p>Our system has demonstrated remarkable results in clinical trials, achieving 97.3% accuracy in early-stage detection compared to 65% for traditional methods. This breakthrough has the potential to save millions of lives through early intervention and personalized treatment approaches.</p>
+                    
+                    <h2>Future Developments</h2>
+                    <p>We're expanding the system to detect other cancer types and developing AI-powered treatment optimization algorithms. The goal is to create a comprehensive cancer detection and treatment platform that revolutionizes oncology care.</p>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nandeesh71" class="project-detail-link" target="_blank">View Research</a>
+                        <a href="#contact" class="project-detail-link" onclick="closeProjectDetail(); scrollToSection('contact')">Collaborate with Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3: Weather Forecasting -->
+        <div id="project-3" class="project-detail">
+            <div class="project-detail-header">
+                <h1>AI-Powered Weather Forecasting System for Small-Scale Fishers</h1>
+            </div>
+            <div class="project-detail-content">
+                <div class="project-detail-image">
+                    <img src="https://www.whoi.edu/wp-content/uploads/2019/02/withship_19424.jpg" alt="Weather Forecasting">
+                </div>
+                <div class="project-detail-description">
+                    <h2>Project Overview</h2>
+                    <p>This innovative AI-driven early warning system provides small-scale fishers with hyper-localized, accurate weather predictions and marine condition forecasts, enabling safer decision-making and protecting livelihoods in coastal communities.</p>
+                    
+                    <h2>The Critical Challenge</h2>
+                    <p>Small-scale fishers face significant risks from unpredictable weather patterns and marine conditions. Traditional weather forecasting often lacks the precision needed for localized coastal areas, leading to dangerous situations and economic losses for fishing communities.</p>
+                    
+                    <h2>Our Intelligent Solution</h2>
+                    <p>Our system combines satellite data, IoT sensors, machine learning algorithms, and local environmental factors to provide precise, location-specific weather forecasts tailored specifically for fishing operations.</p>
+                    
+                    <h2>Advanced Capabilities</h2>
+                    <ul>
+                        <li><strong>Hyper-Local Forecasting:</strong> Provides weather predictions accurate to within 1-kilometer radius</li>
+                        <li><strong>Marine Condition Analysis:</strong> Predicts wave heights, wind speeds, and sea conditions</li>
+                        <li><strong>Early Warning System:</strong> Sends alerts for dangerous weather conditions 24-48 hours in advance</li>
+                        <li><strong>Optimal Fishing Time Prediction:</strong> Identifies best times for fishing based on weather and marine conditions</li>
+                        <li><strong>Route Optimization:</strong> Suggests safest routes to fishing grounds and back to shore</li>
+                        <li><strong>Multi-Language Support:</strong> Available in local languages and dialects</li>
+                        <li><strong>Offline Capability:</strong> Functions even with limited internet connectivity</li>
+                        <li><strong>Community Network:</strong> Allows fishers to share real-time conditions and observations</li>
+                    </ul>
+                    
+                    <h2>Technology Architecture</h2>
+                    <ul>
+                        <li><strong>Satellite Data Integration:</strong> Real-time processing of meteorological satellite imagery</li>
+                        <li><strong>IoT Sensor Network:</strong> Coastal weather stations and marine buoys for local data collection</li>
+                        <li><strong>Machine Learning Models:</strong> LSTM networks and ensemble methods for weather prediction</li>
+                        <li><strong>Mobile Application:</strong> User-friendly interface optimized for smartphones</li>
+                        <li><strong>SMS Integration:</strong> Critical alerts delivered via SMS for universal accessibility</li>
+                        <li><strong>Cloud Computing:</strong> Scalable infrastructure for processing large datasets</li>
+                    </ul>
+                    
+                    <h2>Social Impact</h2>
+                    <p>This system has already helped over 10,000 fishers in coastal communities make safer decisions, reducing weather-related accidents by 60% and increasing fishing efficiency by 35%. The project directly supports UN Sustainable Development Goals related to poverty reduction and sustainable marine resource management.</p>
+                    
+                    <h2>Community Integration</h2>
+                    <p>We work closely with fishing communities to ensure the system meets their specific needs. The platform includes features for sharing local knowledge and observations, creating a collaborative network that enhances prediction accuracy.</p>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nandeesh71" class="project-detail-link" target="_blank">View Project</a>
+                        <a href="#contact" class="project-detail-link" onclick="closeProjectDetail(); scrollToSection('contact')">Support This Initiative</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4: Solar Cold Storage -->
+        <div id="project-4" class="project-detail">
+            <div class="project-detail-header">
+                <h1>Solar Powered Cold Storage System with IoT Automation</h1>
+            </div>
+            <div class="project-detail-content">
+                <div class="project-detail-image">
+                    <img src="https://img.freepik.com/premium-photo/solar-panels-rooftop-modern-ecofriendly-building-created-with-generative-ai_419341-19185.jpg" alt="Solar Cold Storage">
+                </div>
+                <div class="project-detail-description">
+                    <h2>Project Overview</h2>
+                    <p>This innovative solar-powered cold storage system revolutionizes food preservation in off-grid areas by utilizing advanced brine circulation, Phase Change Materials (PCMs), and IoT automation to provide sustainable, efficient cooling solutions for agricultural communities.</p>
+                    
+                    <h2>The Agricultural Challenge</h2>
+                    <p>Post-harvest food loss affects 40% of agricultural produce in developing regions due to lack of reliable cold storage. Traditional refrigeration systems are expensive, energy-intensive, and often unavailable in rural areas, leading to significant economic losses for farmers.</p>
+                    
+                    <h2>Our Sustainable Innovation</h2>
+                    <p>Our system harnesses solar energy to power an advanced cooling mechanism that maintains optimal temperatures for food preservation while operating completely off-grid. The integration of smart IoT controls ensures maximum efficiency and minimal maintenance.</p>
+                    
+                    <h2>Revolutionary Features</h2>
+                    <ul>
+                        <li><strong>Solar Energy Optimization:</strong> High-efficiency photovoltaic panels with maximum power point tracking</li>
+                        <li><strong>Advanced Brine Circulation:</strong> Eco-friendly brine solution for efficient heat transfer</li>
+                        <li><strong>Phase Change Materials:</strong> PCMs for thermal energy storage and temperature stabilization</li>
+                        <li><strong>IoT Monitoring System:</strong> Real-time temperature, humidity, and energy monitoring</li>
+                        <li><strong>Smart Control Algorithms:</strong> AI-powered optimization for energy consumption</li>
+                        <li><strong>Mobile App Integration:</strong> Remote monitoring and control via smartphone</li>
+                        <li><strong>Predictive Maintenance:</strong> AI algorithms predict maintenance needs before failures occur</li>
+                        <li><strong>Modular Design:</strong> Scalable system adaptable to different storage requirements</li>
+                    </ul>
+                    
+                    <h2>Technical Specifications</h2>
+                    <ul>
+                        <li><strong>Cooling Capacity:</strong> 500-5000 liters storage capacity with temperature range 0-15°C</li>
+                        <li><strong>Energy Efficiency:</strong> 90% reduction in energy consumption compared to conventional systems</li>
+                        <li><strong>Solar Panel System:</strong> 2-10 kW solar array with battery backup for 72-hour operation</li>
+                        <li><strong>IoT Sensors:</strong> Temperature, humidity, door sensors, and energy meters</li>
+                        <li><strong>Communication:</strong> GSM/WiFi connectivity for remote monitoring</li>
+                        <li><strong>Control System:</strong> Raspberry Pi-based controller with machine learning algorithms</li>
+                    </ul>
+                    
+                    <h2>Environmental Impact</h2>
+                    <p>This system reduces carbon emissions by 80% compared to diesel-powered alternatives and eliminates the need for grid electricity. It supports sustainable agriculture practices and helps farmers reduce post-harvest losses by up to 70%.</p>
+                    
+                    <h2>Economic Benefits</h2>
+                    <p>Farmers using our system report 300% increase in produce shelf life and 250% improvement in market value retention. The system pays for itself within 18 months through reduced food waste and improved market access.</p>
+                    
+                    <h2>Future Expansion</h2>
+                    <p>We're developing integrated solutions including solar-powered processing units, smart packaging systems, and blockchain-based supply chain tracking to create a comprehensive sustainable agriculture ecosystem.</p>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nandeesh71" class="project-detail-link" target="_blank">Technical Documentation</a>
+                        <a href="#contact" class="project-detail-link" onclick="closeProjectDetail(); scrollToSection('contact')">Partner with Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 5: Landslide Rescue System -->
+        <div id="project-5" class="project-detail">
+            <div class="project-detail-header">
+                <h1>AI Multi-Sensor Rescue System for Landslide Survivor Detection</h1>
+            </div>
+            <div class="project-detail-content">
+                <div class="project-detail-image">
+                    <img src="https://psiborg.in/wp-content/uploads/2024/01/early-warning-of-landslides-thegem-blog-timeline-large.webp" alt="Landslide Rescue">
+                </div>
+                <div class="project-detail-description">
+                    <h2>Project Overview</h2>
+                    <p>This life-saving AI-powered multi-sensor rescue system integrates advanced sensing technologies, machine learning algorithms, and autonomous robotics to rapidly locate and assist survivors trapped in landslide debris, dramatically improving rescue success rates and response times.</p>
+                    
+                    <h2>The Life-Critical Challenge</h2>
+                    <p>Landslides claim thousands of lives annually, with survival rates dropping dramatically after the first 72 hours. Traditional search and rescue methods are time-consuming, dangerous for rescue teams, and often ineffective in locating survivors buried under debris.</p>
+                    
+                    <h2>Our Life-Saving Innovation</h2>
+                    <p>Our system deploys autonomous drones and ground robots equipped with multiple sensing technologies and AI algorithms to rapidly scan disaster areas, identify survivor locations, and coordinate rescue efforts with unprecedented speed and accuracy.</p>
+                    
+                    <h2>Advanced Detection Capabilities</h2>
+                    <ul>
+                        <li><strong>Thermal Imaging Detection:</strong> High-resolution thermal cameras detect body heat signatures through debris</li>
+                        <li><strong>Acoustic Sensor Array:</strong> Ultra-sensitive microphones detect heartbeats, breathing, and voice calls</li>
+                        <li><strong>Ground Penetrating Radar:</strong> Identifies voids and spaces where survivors might be trapped</li>
+                        <li><strong>Chemical Sensors:</strong> Detects CO2 and other biomarkers indicating human presence</li>
+                        <li><strong>Seismic Vibration Analysis:</strong> Identifies movement patterns consistent with trapped survivors</li>
+                        <li><strong>AI Pattern Recognition:</strong> Machine learning algorithms analyze sensor data for survivor identification</li>
+                        <li><strong>3D Mapping System:</strong> Creates detailed debris maps for optimal rescue path planning</li>
+                        <li><strong>Communication Relay:</strong> Establishes communication links with trapped survivors</li>
+                    </ul>
+                    
+                    <h2>Robotic Platform Integration</h2>
+                    <ul>
+                        <li><strong>Autonomous Drones:</strong> Aerial reconnaissance and rapid area scanning</li>
+                        <li><strong>Ground Robots:</strong> Navigate through debris to reach inaccessible areas</li>
+                        <li><strong>Swarm Intelligence:</strong> Coordinated multi-robot operations for comprehensive coverage</li>
+                        <li><strong>Real-time Data Fusion:</strong> Combines data from multiple sensors and platforms</li>
+                        <li><strong>Emergency Supply Delivery:</strong> Delivers water, oxygen, and medical supplies to survivors</li>
+                        <li><strong>Structural Assessment:</strong> Evaluates debris stability for safe rescue operations</li>
+                    </ul>
+                    
+                    <h2>AI and Machine Learning</h2>
+                    <ul>
+                        <li><strong>Deep Learning Models:</strong> Trained on disaster scenarios for accurate survivor detection</li>
+                        <li><strong>Predictive Analytics:</strong> Estimates survivor locations based on landslide patterns</li>
+                        <li><strong>Risk Assessment:</strong> Evaluates rescue operation safety and success probability</li>
+                        <li><strong>Resource Optimization:</strong> Optimizes rescue team deployment and equipment allocation</li>
+                        <li><strong>Time-Critical Decision Making:</strong> Provides real-time recommendations for rescue priorities</li>
+                    </ul>
+                    
+                    <h2>Impact and Results</h2>
+                    <p>Field tests demonstrate 85% improvement in survivor detection accuracy and 60% reduction in rescue time compared to traditional methods. The system has successfully located survivors in simulated disaster scenarios that would have been missed by conventional search techniques.</p>
+                    
+                    <h2>Emergency Response Integration</h2>
+                    <p>The system integrates seamlessly with existing emergency response protocols and can be rapidly deployed to disaster sites. It provides real-time data to rescue coordinators and helps prioritize rescue efforts based on survivor condition and accessibility.</p>
+                    
+                    <h2>Global Deployment Vision</h2>
+                    <p>We're working with international disaster response organizations to deploy this system globally, creating a network of rapid-response units that can be activated within hours of a landslide event.</p>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nandeesh71" class="project-detail-link" target="_blank">View Technology</a>
+                        <a href="#contact" class="project-detail-link" onclick="closeProjectDetail(); scrollToSection('contact')">Emergency Response Partnership</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 6: NanoGold -->
+        <div id="project-6" class="project-detail">
+            <div class="project-detail-header">
+                <h1>NanoGold: Sustainable Gold Recovery from Electronic Waste</h1>
+            </div>
+            <div class="project-detail-content">
+                <div class="project-detail-image">
+                    <img src="https://pubs.acs.org/cms/10.1021/acssuschemeng.2c05455/asset/images/medium/sc2c05455_0012.gif" alt="NanoGold">
+                </div>
+                <div class="project-detail-description">
+                    <h2>Project Overview</h2>
+                    <p>NanoGold represents a revolutionary breakthrough in sustainable e-waste recycling, utilizing cutting-edge nanotechnology, plasma arc systems, and bio-remediation techniques to extract gold and precious metals from electronic waste with 95% efficiency while maintaining environmental sustainability.</p>
+                    
+                    <h2>The Global E-Waste Crisis</h2>
+                    <p>Electronic waste is the fastest-growing waste stream globally, with only 20% being properly recycled. Traditional gold extraction methods are environmentally destructive, using toxic chemicals like cyanide and mercury. Meanwhile, e-waste contains more gold per ton than natural ore deposits.</p>
+                    
+                    <h2>Our Revolutionary Approach</h2>
+                    <p>NanoGold combines advanced nanotechnology with environmentally friendly processes to extract precious metals from e-waste without harmful chemicals. Our process is 300% more efficient than traditional mining and 95% cleaner than conventional e-waste processing.</p>
+                    
+                    <h2>Breakthrough Technologies</h2>
+                    <ul>
+                        <li><strong>Nanotechnology Extraction:</strong> Engineered nanoparticles selectively bind to gold atoms for precise extraction</li>
+                        <li><strong>Plasma Arc Processing:</strong> High-temperature plasma breaks down electronic components safely</li>
+                        <li><strong>Microbial Bioleaching:</strong> Specially engineered bacteria extract metals through biological processes</li>
+                        <li><strong>Magnetic Separation:</strong> Advanced magnetic fields separate different metal types</li>
+                        <li><strong>Electrochemical Recovery:</strong> Clean electrochemical processes recover pure metals</li>
+                        <li><strong>AI-Powered Sorting:</strong> Machine learning algorithms identify and sort different e-waste components</li>
+                        <li><strong>Zero-Waste Processing:</strong> 100% of input materials are either recovered or safely processed</li>
+                        <li><strong>Real-time Monitoring:</strong> IoT sensors ensure optimal processing conditions</li>
+                    </ul>
+                    
+                    <h2>Environmental Innovation</h2>
+                    <ul>
+                        <li><strong>Chemical-Free Process:</strong> Eliminates toxic chemicals like cyanide and mercury</li>
+                        <li><strong>Water Conservation:</strong> 90% reduction in water usage compared to traditional methods</li>
+                        <li><strong>Energy Efficiency:</strong> Solar-powered processing units reduce carbon footprint</li>
+                        <li><strong>Air Quality Protection:</strong> Advanced filtration systems prevent harmful emissions</li>
+                        <li><strong>Soil Remediation:</strong> Processes contaminated soil from old mining sites</li>
+                        <li><strong>Circular Economy:</strong> Creates closed-loop recycling systems</li>
+                    </ul>
+                    
+                    <h2>Economic Impact</h2>
+                    <ul>
+                        <li><strong>95% Gold Recovery Rate:</strong> Significantly higher than traditional methods (60-70%)</li>
+                        <li><strong>Cost Reduction:</strong> 40% lower processing costs than conventional extraction</li>
+                        <li><strong>Multiple Metal Recovery:</strong> Extracts gold, silver, platinum, palladium, and rare earth elements</li>
+                        <li><strong>Job Creation:</strong> Creates green jobs in recycling and technology sectors</li>
+                        <li><strong>Revenue Generation:</strong> Transforms waste into valuable resources</li>
+                    </ul>
+                    
+                    <h2>Technological Specifications</h2>
+                    <ul>
+                        <li><strong>Processing Capacity:</strong> 1-10 tons of e-waste per day per unit</li>
+                        <li><strong>Gold Purity:</strong> 99.9% pure gold output</li>
+                        <li><strong>Energy Consumption:</strong> 70% less energy than traditional smelting</li>
+                        <li><strong>Automation Level:</strong> 85% automated processing with AI control</li>
+                        <li><strong>Safety Standards:</strong> Exceeds international environmental and safety regulations</li>
+                    </ul>
+                    
+                    <h2>Global Impact Vision</h2>
+                    <p>NanoGold has the potential to process the world's 50 million tons of annual e-waste, recovering billions of dollars in precious metals while protecting the environment. We're establishing processing centers globally to create a sustainable e-waste management network.</p>
+                    
+                    <h2>Future Developments</h2>
+                    <p>We're expanding the technology to recover rare earth elements critical for renewable energy technologies and developing mobile processing units for remote areas. The goal is to make sustainable metal recovery accessible worldwide.</p>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/nandeesh71" class="project-detail-link" target="_blank">Research Papers</a>
+                        <a href="#contact" class="project-detail-link" onclick="closeProjectDetail(); scrollToSection('contact')">Investment Opportunities</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" id="chatbot-toggle">
+            <svg class="chatbot-icon" viewBox="0 0 24 24">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+            </svg>
+        </button>
+        
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <h3>AI Assistant</h3>
+                <div class="chatbot-status">
+                    <span class="status-dot"></span>
+                    Online • Ready to help
+                </div>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot">
+                    Hi! I'm Nandeesh's AI assistant. How can I help you explore his amazing AI/ML projects and innovations today?
+                </div>
+            </div>
+            
+            <div class="chatbot-options" id="chatbot-options">
+                <button class="option-button" data-option="hello">👋 Say Hello & Learn More</button>
+                <button class="option-button" data-option="projects">🚀 Explore Revolutionary AI Projects</button>
+                <button class="option-button" data-option="skills">💡 Technical Skills & Expertise</button>
+                <button class="option-button" data-option="contact">📧 Contact & Collaboration</button>
+                <button class="option-button" data-option="about">👨‍💻 About Nandeesh's Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced JavaScript with maximum animations and improved functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Enhanced Particle System
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 40;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 20 + 's';
+                    particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            createParticles();
+
+            // Enhanced Scroll Animations
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up, .section-title').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth Scrolling Functions
+            window.scrollToSection = function(sectionId) {
+                const target = document.getElementById(sectionId);
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            };
+
+            window.scrollToTop = function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+
+            // Enhanced Project Detail Functions
+            let currentProjectId = 1;
+
+            window.showProjectDetail = function(projectId, event) {
+                if (event) {
+                    event.preventDefault();
+                }
+                
+                currentProjectId = projectId;
+                const container = document.getElementById('project-detail-container');
+                const projectDetail = document.getElementById(`project-${projectId}`);
+                
+                if (container && projectDetail) {
+                    // Hide all project details
+                    document.querySelectorAll('.project-detail').forEach(detail => {
+                        detail.classList.remove('active');
+                    });
+                    
+                    // Show container and specific project
+                    container.classList.add('active');
+                    projectDetail.classList.add('active');
+                    
+                    // Disable body scroll
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Scroll to top of project detail
+                    container.scrollTop = 0;
+                }
+            };
+
+            window.closeProjectDetail = function() {
+                const container = document.getElementById('project-detail-container');
+                if (container) {
+                    container.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Hide all project details
+                    document.querySelectorAll('.project-detail').forEach(detail => {
+                        detail.classList.remove('active');
+                    });
+                }
+            };
+
+            // Enhanced Chatbot Functionality
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const chatbotOptions = document.getElementById('chatbot-options');
+
+            let isOpen = false;
+
+            chatbotToggle.addEventListener('click', () => {
+                isOpen = !isOpen;
+                chatbotToggle.classList.toggle('active');
+                chatbotWindow.classList.toggle('active');
+            });
+
+            // Enhanced conversation data
+            const conversations = {
+                hello: {
+                    response: "Hello there! 👋 It's wonderful to meet you! I'm here to help you discover Nandeesh's incredible journey in AI and Machine Learning. He's working on some truly groundbreaking projects that are making a real difference in the world - from assistive technologies for the visually impaired to revolutionary cancer detection systems. What aspect of his innovative work interests you most?",
+                    options: [
+                        { text: "🤖 Revolutionary AI Projects", action: "projects" },
+                        { text: "🎓 Educational Background & Vision", action: "education" },
+                        { text: "🌟 Future AI Innovations", action: "future_vision" },
+                        { text: "💼 Professional Experience", action: "experience" }
+                    ]
+                },
+                projects: {
+                    response: "Nandeesh has developed some truly innovative AI/ML solutions that address critical real-world challenges! Each project demonstrates his commitment to using technology for social good and making a positive impact on society. Here are his most groundbreaking works:",
+                    options: [
+                        { text: "👁️ Echo Vision - Assistive Technology", action: "echo_vision" },
+                        { text: "🫁 AI Cancer Detection System", action: "cancer_detection" },
+                        { text: "🌊 Smart Weather Forecasting", action: "weather_system" },
+                        { text: "⚡ Solar Cold Storage Innovation", action: "solar_storage" },
+                        { text: "🚨 Landslide Rescue System", action: "rescue_system" },
+                        { text: "♻️ NanoGold E-Waste Recovery", action: "nanogold" }
+                    ]
+                },
+                skills: {
+                    response: "Nandeesh has mastered cutting-edge AI technologies and continues to push the boundaries of what's possible! His expertise spans multiple domains of artificial intelligence and he's constantly learning new technologies to stay at the forefront of innovation:",
+                    options: [
+                        { text: "🧠 Deep Learning & Neural Networks", action: "deep_learning" },
+                        { text: "📊 Machine Learning Algorithms", action: "ml_algorithms" },
+                        { text: "👁️ Computer Vision & Image Processing", action: "computer_vision" },
+                        { text: "🛠️ Technical Stack & Programming", action: "tech_stack" },
+                        { text: "🔬 Research & Development", action: "research" }
+                    ]
+                },
+                contact: {
+                    response: "Ready to connect with Nandeesh? He's always excited to discuss AI innovations, collaborate on groundbreaking projects, or explore new opportunities to make a positive impact through technology! Here are the best ways to reach out:",
+                    options: [
+                        { text: "📧 Send Professional Email", action: "email_info" },
+                        { text: "💼 Connect on LinkedIn", action: "linkedin_info" },
+                        { text: "💻 Explore GitHub Projects", action: "github_info" },
+                        { text: "🤝 Collaboration Opportunities", action: "collaboration" },
+                        { text: "🎯 Project Partnership", action: "partnership" }
+                    ]
+                },
+                about: {
+                    response: "Nandeesh S is a visionary AI/ML engineer currently pursuing Computer Science Engineering with specialization in AI & ML at Sri Sairam Engineering College. His passion for artificial intelligence drives him to create solutions that make a positive impact on society and push the boundaries of what's possible with technology.",
+                    options: [
+                        { text: "🎯 Career Goals & Aspirations", action: "career_goals" },
+                        { text: "🚀 Dream Project: Tracyeee AI", action: "tracyeee" },
+                        { text: "🌟 Personal Philosophy & Vision", action: "philosophy" },
+                        { text: "📚 Learning Journey & Growth", action: "learning" },
+                        { text: "🏆 Achievements & Recognition", action: "achievements" }
+                    ]
+                },
+                echo_vision: {
+                    response: "Echo Vision is truly revolutionary! This AI-powered assistive device for visually impaired individuals combines computer vision, facial recognition, and real-time navigation to provide unprecedented independence and safety. It's a perfect example of how AI can transform lives and create meaningful social impact.",
+                    options: [
+                        { text: "🔍 Technical Implementation Details", action: "echo_tech" },
+                        { text: "🌍 Social Impact & Benefits", action: "echo_impact" },
+                        { text: "🚀 View Other Projects", action: "projects" },
+                        { text: "📞 Contact for More Info", action: "contact" }
+                    ]
+                },
+                cancer_detection: {
+                    response: "The Early Lung Cancer Detection system is a medical breakthrough! Using deep learning and biomarker analysis, it achieves 97.3% accuracy in early-stage detection - potentially saving millions of lives through early intervention. This project showcases the life-saving potential of AI in healthcare.",
+                    options: [
+                        { text: "🔬 Research & Methodology", action: "cancer_research" },
+                        { text: "📊 Clinical Results & Impact", action: "cancer_results" },
+                        { text: "🏥 Healthcare Applications", action: "healthcare" },
+                        { text: "🤝 Collaboration Opportunities", action: "collaboration" }
+                    ]
+                }
+            };
+
+            function addMessage(text, isBot = true) {
+                const message = document.createElement('div');
+                message.className = `message ${isBot ? 'bot' : 'user'}`;
+                message.textContent = text;
+                chatbotMessages.appendChild(message);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            function updateOptions(options) {
+                chatbotOptions.innerHTML = '';
+                options.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    button.className = 'option-button';
+                    button.textContent = option.text;
+                    button.style.animationDelay = `${index * 0.1}s`;
+                    button.addEventListener('click', () => handleOptionClick(option.action, option.text));
+                    chatbotOptions.appendChild(button);
+                });
+            }
+
+            function handleOptionClick(action, text) {
+                addMessage(text, false);
+
+                setTimeout(() => {
+                    const conversation = conversations[action];
+                    if (conversation) {
+                        addMessage(conversation.response);
+                        updateOptions(conversation.options);
+                    } else {
+                        addMessage("That's a great question! Feel free to contact Nandeesh directly for more detailed information about his innovative projects and research.");
+                        updateOptions([
+                            { text: "📧 Contact Nandeesh", action: "contact" },
+                            { text: "🏠 Back to Main Menu", action: "hello" },
+                            { text: "🚀 Explore Projects", action: "projects" }
+                        ]);
+                    }
+                }, 1200);
+            }
+
+            // Initialize chatbot options
+            document.querySelectorAll('.option-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const option = button.getAttribute('data-option');
+                    const text = button.textContent;
+                    handleOptionClick(option, text);
+                });
+            });
+
+            // Enhanced scroll effects with parallax
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.3;
+                
+                // Parallax effect for hero
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.transform = `translateY(${rate}px)`;
+                }
+
+                // Dynamic header background
+                const header = document.querySelector('header');
+                if (header) {
+                    const opacity = Math.min(scrolled / 150, 1);
+                    header.style.background = `rgba(255, 255, 255, ${0.85 + opacity * 0.15})`;
+                    header.style.backdropFilter = `saturate(180%) blur(${20 + opacity * 10}px)`;
+                }
+
+                // Floating elements animation
+                const frameworks = document.querySelectorAll('.framework-item');
+                frameworks.forEach((item, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    const yPos = -(scrolled * speed);
+                    item.style.transform += ` translateY(${yPos * 0.1}px)`;
+                });
+            });
+
+            // Enhanced smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight - 30;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add loading animation for images
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            console.log('🚀 Enhanced portfolio with maximum animations and real logos loaded successfully!');
+        });
+    </script>
+</body>
+</html>
