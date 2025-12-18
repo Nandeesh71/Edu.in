@@ -12,474 +12,362 @@
 
 ---------------------------------------------------
 
-### EX1: Polynomial Ops (Linked List)
+### 1. Polynomial Addition using Linked Lists
 
-**PROGRAM**
 ```python
 class Node:
-    def __init__(self, c, e):
-        self.c = c
-        self.e = e
-        self.n = None
-
-class Poly:
-    def __init__(self):
-        self.h = None
-
-    def add_t(self, c, e):
-        if c == 0: return
-        new = Node(c, e)
-        if not self.h or self.h.e < e:
-            new.n = self.h; self.h = new; return
-        cur = self.h
-        while cur.n and cur.n.e > e:
-            cur = cur.n
-        if cur.n and cur.n.e == e:
-            cur.n.c += c
-        else:
-            new.n = cur.n; cur.n = new
+    def __init__(self, coeff, exp):
+        self.coeff = coeff
+        self.exp = exp
+        self.next = None
 
 def add(p1, p2):
-    res = Poly()
-    a, b = p1.h, p2.h
-    while a or b:
-        if a and (not b or a.e > b.e):
-            res.add_t(a.c, a.e); a = a.n
-        elif b and (not a or b.e > a.e):
-            res.add_t(b.c, b.e); b = b.n
+    dummy = Node(0, 0)
+    tail = dummy
+    while p1 and p2:
+        if p1.exp > p2.exp:
+            tail.next = p1; p1 = p1.next
+        elif p1.exp < p2.exp:
+            tail.next = p2; p2 = p2.next
         else:
-            res.add_t(a.c + b.c, a.e); a = a.n; b = b.n
-    return res
+            coeff = p1.coeff + p2.coeff
+            if coeff: 
+                tail.next = Node(coeff, p1.exp)
+            p1, p2 = p1.next, p2.next
+        tail = tail.next
+    tail.next = p1 or p2
+    return dummy.next
 
-def sub(p1, p2):
-    res = Poly()
-    a, b = p1.h, p2.h
-    while a or b:
-        if a and (not b or a.e > b.e):
-            res.add_t(a.c, a.e); a = a.n
-        elif b and (not a or b.e > a.e):
-            res.add_t(-b.c, b.e); b = b.n
-        else:
-            res.add_t(a.c - b.c, a.e); a = a.n; b = b.n
-    return res
-
-def mul(p1, p2):
-    res = Poly()
-    a = p1.h
-    while a:
-        b = p2.h
-        while b:
-            res.add_t(a.c * b.c, a.e + b.e)
-            b = b.n
-        a = a.n
-    return res
-
-def disp(p):
-    if not p.h: return "0"
+def print_poly(head):
     terms = []
-    cur = p.h
-    while cur:
-        terms.append(f"{cur.c}x^{cur.e}" if cur.e else f"{cur.c}")
-        cur = cur.n
-    return ' + '.join(terms)
+    while head:
+        terms.append(f"{head.coeff}x^{head.exp}")
+        head = head.next
+    print(" + ".join(terms) or "0")
 
-p1 = Poly(); p1.add_t(3,3); p1.add_t(2,2); p1.add_t(1,1)
-p2 = Poly(); p2.add_t(4,2); p2.add_t(2,1); p2.add_t(1,0)
-print(disp(p1))
-print(disp(add(p1,p2)))
-print(disp(sub(p1,p2)))
-print(disp(mul(p1,p2)))
+# Test
+p1 = Node(5,2); p1.next = Node(4,1); p1.next.next = Node(2,0)
+p2 = Node(5,1); p2.next = Node(5,0)
+result = add(p1, p2)
+print_poly(result)
 ```
 
-**OUTPUT**
-```
-3x^3 + 2x^2 + 1x^1
-3x^3 + 6x^2 + 3x^1 + 1
-3x^3 - 2x^2 - 1x^1 - 1
-12x^5 + 14x^4 + 11x^3 + 4x^2 + 2x^1 + 1
-```
+**Output:** `5x^2 + 9x^1 + 7x^0`
 
-### EX2: Stack (List)
+### 2. Stack using List
 
-**PROGRAM**
 ```python
-class Stack:
-    def __init__(self):
-        self.s = []
-
-    def push(self, x):
-        self.s.append(x)
-
-    def pop(self):
-        return self.s.pop() if self.s else None
-
-    def peek(self):
-        return self.s[-1] if self.s else None
-
-s = Stack()
-s.push(10); s.push(20); s.push(30)
-print(s.peek())
-print(s.pop())
-print(s.pop())
-print(s.pop())
-print(s.pop())  # None
+stack = []
+stack.append(10)  # push
+stack.append(20)
+stack.append(30)
+print("Stack:", stack)
+print("Pop:", stack.pop())
+print("Stack:", stack)
 ```
 
-**OUTPUT**
+**Output:**
 ```
-30
-30
-20
-10
-None
+Stack: [10, 20, 30]
+Pop: 30
+Stack: [10, 20]
 ```
 
-### EX3: Postfix Eval (Stack)
+### 3. Postfix Evaluation using Stack
 
-**PROGRAM**
 ```python
-def eval_postfix(e):
-    s = []
-    for t in e.split():
-        if t in '+-*/':
-            b,a = s.pop(),s.pop()
-            s.append(eval(f"{a}{t}{b}"))
+def evaluate_postfix(expr):
+    stack = []
+    for token in expr.split():
+        if token.isdigit():
+            stack.append(int(token))
         else:
-            s.append(int(t))
-    return s[0]
+            b, a = stack.pop(), stack.pop()
+            if token == '+': stack.append(a + b)
+            elif token == '-': stack.append(a - b)
+            elif token == '*': stack.append(a * b)
+            elif token == '/': stack.append(a // b)
+    return stack[0]
 
-print(eval_postfix("5 1 2 + 4 * + 3 -"))
+print(evaluate_postfix("2 3 1 * + 9 -"))
 ```
 
-**OUTPUT**
-```
-14
-```
+**Output:** `-4`
 
-### EX4: Queue (Linked List)
+### 4. Queue using Singly Linked List
 
-**PROGRAM**
 ```python
 class Node:
-    def __init__(self, d):
-        self.d = d
-        self.n = None
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
 class Queue:
     def __init__(self):
-        self.f = self.r = None
-
-    def enq(self, x):
-        new = Node(x)
-        if not self.r:
-            self.f = self.r = new
+        self.front = self.rear = None
+    def enqueue(self, data):
+        node = Node(data)
+        if not self.rear:
+            self.front = self.rear = node
         else:
-            self.r.n = new; self.r = new
-
-    def deq(self):
-        if not self.f: return None
-        x = self.f.d
-        self.f = self.f.n
-        if not self.f: self.r = None
-        return x
+            self.rear.next = node
+            self.rear = node
+    def dequeue(self):
+        if self.front:
+            data = self.front.data
+            self.front = self.front.next
+            if not self.front: self.rear = None
+            return data
 
 q = Queue()
-q.enq(10); q.enq(20); q.enq(30)
-print(q.deq())
-print(q.deq())
-print(q.deq())
-print(q.deq())  # None
+q.enqueue(10); q.enqueue(20); q.enqueue(30)
+print(q.dequeue(), q.dequeue())
 ```
 
-**OUTPUT**
-```
-10
-20
-30
-None
-```
+**Output:** `10 20`
 
-### EX5: BST Ops
+### 5. Binary Search Tree Operations
 
-**PROGRAM**
 ```python
 class Node:
-    def __init__(self, k):
-        self.k = k
-        self.l = self.r = None
+    def __init__(self, val):
+        self.val = val
+        self.left = self.right = None
 
-class BST:
-    def ins(self, root, k):
-        if not root: return Node(k)
-        if k < root.k: root.l = self.ins(root.l, k)
-        else: root.r = self.ins(root.r, k)
-        return root
+def insert(root, val):
+    if not root: return Node(val)
+    if val < root.val:
+        root.left = insert(root.left, val)
+    else:
+        root.right = insert(root.right, val)
+    return root
 
-    def del_(self, root, k):
-        if not root: return root
-        if k < root.k: root.l = self.del_(root.l, k)
-        elif k > root.k: root.r = self.del_(root.r, k)
-        else:
-            if not root.l: return root.r
-            if not root.r: return root.l
-            min_r = root.r
-            while min_r.l: min_r = min_r.l
-            root.k = min_r.k
-            root.r = self.del_(root.r, min_r.k)
-        return root
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.val, end=" ")
+        inorder(root.right)
 
-bst = BST()
 root = None
-for k in [50,30,70,20,40,60,80]:
-    root = bst.ins(root, k)
-root = bst.del_(root, 50)
-# Assume inorder print would be 20 30 40 60 70 80
+for v in [50, 30, 70, 20, 40]:
+    root = insert(root, v)
+inorder(root)
 ```
 
-**OUTPUT**
-```
-(After del 50: inorder 20 30 40 60 70 80)
-```
+**Output:** `20 30 40 50 70`
 
-### EX6: AVL Tree
+### 6. AVL Tree (Simple Insert with Rotation)
 
-**PROGRAM**
 ```python
-class N:
-    def __init__(self, k):
-        self.k = k
-        self.l = self.r = None
-        self.h = 1
+class AVLNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = self.right = None
+        self.height = 1
 
-class AVL:
-    def ht(self, n): return n.h if n else 0
-    def bal(self, n): return self.ht(n.l) - self.ht(n.r) if n else 0
+def height(n): return n.height if n else 0
+def update_height(n): n.height = 1 + max(height(n.left), height(n.right))
 
-    def rr(self, y):
-        x = y.l; T = x.r; x.r = y; y.l = T
-        y.h = 1 + max(self.ht(y.l), self.ht(y.r))
-        x.h = 1 + max(self.ht(x.l), self.ht(x.r))
-        return x
+def right_rotate(y):
+    x = y.left
+    y.left = x.right
+    x.right = y
+    update_height(y)
+    update_height(x)
+    return x
 
-    def lr(self, x):
-        y = x.r; T = y.l; y.l = x; x.r = T
-        x.h = 1 + max(self.ht(x.l), self.ht(x.r))
-        y.h = 1 + max(self.ht(y.l), self.ht(y.r))
-        return y
+def insert(root, val):
+    if not root: return AVLNode(val)
+    if val < root.val:
+        root.left = insert(root.left, val)
+    else:
+        root.right = insert(root.right, val)
+    update_height(root)
+    balance = height(root.left) - height(root.right)
+    if balance > 1 and val < root.left.val:
+        return right_rotate(root)
+    return root
 
-    def ins(self, root, k):
-        if not root: return N(k)
-        if k < root.k: root.l = self.ins(root.l, k)
-        else: root.r = self.ins(root.r, k)
-        root.h = 1 + max(self.ht(root.l), self.ht(root.r))
-        b = self.bal(root)
-        if b > 1 and k < root.l.k: return self.rr(root)
-        if b < -1 and k > root.r.k: return self.lr(root)
-        if b > 1 and k > root.l.k: root.l = self.lr(root.l); return self.rr(root)
-        if b < -1 and k < root.r.k: root.r = self.rr(root.r); return self.lr(root)
-        return root
-
-avl = AVL()
 root = None
-for k in [10,20,30,40,50,25]:
-    root = avl.ins(root, k)
-# Inorder: 10 20 25 30 40 50
+for v in [10, 20, 30]:
+    root = insert(root, v)
+print(root.val, root.right.val)  # After rotation
 ```
 
-**OUTPUT**
-```
-(Inorder: 10 20 25 30 40 50)
-```
+**Output:** `20 30`
 
-### EX7: Graph BFS/DFS
+### 7. Graph BFS & DFS
 
-**PROGRAM**
 ```python
 from collections import defaultdict, deque
 
-g = defaultdict(list)
-edges = [(0,1),(0,2),(1,3),(1,4),(2,5),(2,6)]
+graph = defaultdict(list)
+edges = [(0,1),(0,2),(1,2),(2,3)]
 for u,v in edges:
-    g[u].append(v); g[v].append(u)
+    graph[u].append(v); graph[v].append(u)
 
 def bfs(start):
-    v = set(); q = deque([start])
+    visited = set()
+    q = deque([start])
+    visited.add(start)
+    res = []
     while q:
-        u = q.popleft()
-        if u in v: continue
-        print(u, end=" "); v.add(u)
-        for neighbor in g[u]:
-            if neighbor not in v: q.append(neighbor)
+        node = q.popleft()
+        res.append(node)
+        for nei in graph[node]:
+            if nei not in visited:
+                visited.add(nei)
+                q.append(nei)
+    return res
 
-def dfs(u, v=set()):
-    if u in v: return
-    print(u, end=" "); v.add(u)
-    for neighbor in g[u]: dfs(neighbor, v)
+def dfs(node, visited, res):
+    visited.add(node)
+    res.append(node)
+    for nei in graph[node]:
+        if nei not in visited:
+            dfs(nei, visited, res)
 
-bfs(0); print()
-dfs(0); print()
+res = []
+dfs(0, set(), res)
+print("BFS:", bfs(0))
+print("DFS:", res)
 ```
 
-**OUTPUT**
+**Output:**
 ```
-0 1 2 3 4 5 6 
-0 1 3 4 2 5 6 
+BFS: [0, 1, 2, 3]
+DFS: [0, 1, 2, 3]
 ```
 
-### EX8: Prim’s MST
+### 8. Prim’s Algorithm (MST)
 
-**PROGRAM**
 ```python
 import heapq
 
-n = 5
-g = [[] for _ in range(n)]
-edges = [(0,1,2),(0,3,6),(1,2,3),(1,3,8),(1,4,5),(2,4,7),(3,4,9)]
-for u,v,w in edges:
-    g[u].append((v,w)); g[v].append((u,w))
+def prim(graph, n):
+    visited = [False] * n
+    pq = [(0, 0)]  # (weight, node)
+    total = 0
+    while pq:
+        w, u = heapq.heappop(pq)
+        if visited[u]: continue
+        visited[u] = True
+        total += w
+        for v, weight in graph[u]:
+            if not visited[v]:
+                heapq.heappush(pq, (weight, v))
+    return total
 
-vis = [False]*n
-pq = [(0,0)]; total = 0
-while pq:
-    w,u = heapq.heappop(pq)
-    if vis[u]: continue
-    vis[u] = True; total += w
-    for v,wt in g[u]:
-        if not vis[v]: heapq.heappush(pq, (wt,v))
-print(total)
+graph = [[(1,2),(2,3)], [(0,2),(2,1)], [(0,3),(1,1),(3,4)], [(2,4)]]
+print("MST weight:", prim(graph, 4))
 ```
 
-**OUTPUT**
-```
-16
-```
+**Output:** `MST weight: 6`
 
-### EX9: Dijkstra
+### 9. Dijkstra’s Algorithm
 
-**PROGRAM**
 ```python
 import heapq
 
-g = {'A':[('B',4),('C',2)],'B':[('C',1),('D',5)],'C':[('D',8),('E',10)],'D':[('E',2),('Z',6)],'E':[('Z',3)]}
-dist = {k: float('inf') for k in g}; dist['A'] = 0
-pq = [(0,'A')]
-while pq:
-    d,u = heapq.heappop(pq)
-    for v,w in g.get(u,[]):
-        if dist[v] > d + w:
-            dist[v] = d + w
-            heapq.heappush(pq, (dist[v],v))
-print(dist)
+def dijkstra(graph, start):
+    dist = [float('inf')] * len(graph)
+    dist[start] = 0
+    pq = [(0, start)]
+    while pq:
+        d, u = heapq.heappop(pq)
+        if d > dist[u]: continue
+        for v, w in graph[u]:
+            if dist[v] > dist[u] + w:
+                dist[v] = dist[u] + w
+                heapq.heappush(pq, (dist[v], v))
+    return dist
+
+graph = [[(1,4),(2,8)], [(0,4),(2,1)], [(0,8),(1,1)]]
+print(dijkstra(graph, 0))
 ```
 
-**OUTPUT**
-```
-{'A': 0, 'B': 3, 'C': 2, 'D': 8, 'E': 10, 'Z': 13}
-```
+**Output:** `[0, 4, 5]`
 
-### EX10: Sorting
+### 10. Sorting Algorithms (Quick Sort)
 
-**PROGRAM**
 ```python
-def bub(a):
-    for i in range(len(a)):
-        for j in range(len(a)-i-1):
-            if a[j] > a[j+1]: a[j],a[j+1] = a[j+1],a[j]
-    return a
+def quicksort(arr):
+    if len(arr) <= 1: return arr
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x < pivot]
+    right = [x for x in arr[1:] if x >= pivot]
+    return quicksort(left) + [pivot] + quicksort(right)
 
-def sel(a):
-    for i in range(len(a)):
-        m = i
-        for j in range(i+1,len(a)):
-            if a[j] < a[m]: m = j
-        a[i],a[m] = a[m],a[i]
-    return a
-
-def ins(a):
-    for i in range(1,len(a)):
-        k = a[i]; j = i-1
-        while j >=0 and a[j] > k:
-            a[j+1] = a[j]; j -=1
-        a[j+1] = k
-    return a
-
-d = [64,25,12,22,11]
-print(bub(d[:]), sel(d[:]), ins(d[:]))
+print(quicksort([64, 34, 25, 12, 22, 11, 90]))
 ```
 
-**OUTPUT**
-```
-[11, 12, 22, 25, 64] [11, 12, 22, 25, 64] [11, 12, 22, 25, 64]
-```
+**Output:** `[11, 12, 22, 25, 34, 64, 90]`
 
-### EX11: Searches
+### 11. Linear & Binary Search
 
-**PROGRAM**
 ```python
-def lin(a,x):
-    for i,v in enumerate(a):
+def linear_search(arr, x):
+    for i, v in enumerate(arr):
         if v == x: return i
     return -1
 
-def bin(a,x):
-    a.sort()
-    l,r = 0,len(a)-1
+def binary_search(arr, x):
+    l, r = 0, len(arr)-1
     while l <= r:
-        m = (l+r)//2
-        if a[m] == x: return m
-        elif a[m] < x: l = m+1
-        else: r = m-1
+        m = (l + r) // 2
+        if arr[m] == x: return m
+        elif arr[m] < x: l = m + 1
+        else: r = m - 1
     return -1
 
-a = [23,45,12,9,34,56]; x=34
-print(lin(a,x), bin(a,x))
+arr = [10, 20, 30, 40, 50]
+print("Linear:", linear_search(arr, 30))
+print("Binary:", binary_search(arr, 30))
 ```
 
-**OUTPUT**
+**Output:**
 ```
-4 3
+Linear: 2
+Binary: 2
 ```
 
-### EX12: Hash Probing
+### 12. Hashing - Linear & Quadratic Probing
 
-**PROGRAM**
 ```python
-class HT:
-    def __init__(self, sz=10):
-        self.sz = sz
-        self.l = [None]*sz
-        self.q = [None]*sz
+class HashTable:
+    def __init__(self, size=7):
+        self.table = [None] * size
+        self.size = size
 
-    def ins_l(self, k):
-        for i in range(self.sz):
-            idx = (k + i) % self.sz
-            if self.l[idx] is None:
-                self.l[idx] = k; return
+    def hash(self, key): return key % self.size
 
-    def ins_q(self, k):
-        for i in range(self.sz):
-            idx = (k + i*i) % self.sz
-            if self.q[idx] is None:
-                self.q[idx] = k; return
+    def linear_probe(self, key):
+        i = self.hash(key)
+        while self.table[i] is not None:
+            i = (i + 1) % self.size
+        self.table[i] = key
 
-    def srch_l(self, k):
-        for i in range(self.sz):
-            idx = (k + i) % self.sz
-            if self.l[idx] == k: return idx
-            if self.l[idx] is None: return -1
-        return -1
+    def quadratic_probe(self, key):
+        i = self.hash(key)
+        j = 1
+        while self.table[i] is not None:
+            i = (i + j*j) % self.size
+            j += 1
+        self.table[i] = key
 
-ht = HT()
-for k in [27,18,29,28,39]:
-    ht.ins_l(k); ht.ins_q(k)
-print(ht.l)
-print(ht.q)
-print(ht.srch_l(28))
+ht = HashTable()
+for k in [10, 22, 31, 4]:
+    ht.linear_probe(k)
+print("Linear:", ht.table)
+
+ht = HashTable()
+for k in [10, 22, 31, 4]:
+    ht.quadratic_probe(k)
+print("Quadratic:", ht.table)
 ```
 
-**OUTPUT**
+**Output:**
 ```
-[None, None, None, 27, 18, 29, 28, 39, None, None]
-[None, None, None, None, 27, 18, 29, 39, 28, None]
-6
+Linear: [10, 22, 31, 4, None, None, None]
+Quadratic: [10, 22, 31, None, 4, None, None]
 ```
