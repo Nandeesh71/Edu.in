@@ -2,43 +2,81 @@
 
 ```python
 class Node:
-    def __init__(self, coeff, exp):
-        self.coeff = coeff
-        self.exp = exp
+    def __init__(self, c, e):
+        self.c = c          # coefficient
+        self.e = e          # exponent
         self.next = None
 
-def add(p1, p2):
-    dummy = Node(0, 0)
-    tail = dummy
-    while p1 and p2:
-        if p1.exp > p2.exp:
-            tail.next = p1; p1 = p1.next
-        elif p1.exp < p2.exp:
-            tail.next = p2; p2 = p2.next
+class Poly:
+    def __init__(self):
+        self.head = None
+
+    def add_term(self, c, e):
+        if c == 0: return
+        node = Node(c, e)
+        if not self.head or self.head.e < e:
+            node.next = self.head
+            self.head = node
+            return
+        cur = self.head
+        while cur.next and cur.next.e > e:
+            cur = cur.next
+        if cur.next and cur.next.e == e:
+            cur.next.c += c
+            if cur.next.c == 0:
+                cur.next = cur.next.next
         else:
-            coeff = p1.coeff + p2.coeff
-            if coeff: 
-                tail.next = Node(coeff, p1.exp)
-            p1, p2 = p1.next, p2.next
-        tail = tail.next
-    tail.next = p1 or p2
-    return dummy.next
+            node.next = cur.next
+            cur.next = node
 
-def print_poly(head):
-    terms = []
-    while head:
-        terms.append(f"{head.coeff}x^{head.exp}")
-        head = head.next
-    print(" + ".join(terms) or "0")
+    def add(self, other):
+        res = Poly()
+        a, b = self.head, other.head
+        while a or b:
+            if a and (not b or a.e > b.e):
+                res.add_term(a.c, a.e); a = a.next
+            elif b and (not a or b.e > a.e):
+                res.add_term(b.c, b.e); b = b.next
+            else:
+                if a.c + b.c != 0:
+                    res.add_term(a.c + b.c, a.e)
+                a, b = a.next, b.next
+        return res
 
-# Test
-p1 = Node(5,2); p1.next = Node(4,1); p1.next.next = Node(2,0)
-p2 = Node(5,1); p2.next = Node(5,0)
-result = add(p1, p2)
-print_poly(result)
+    def show(self):
+        if not self.head: return "0"
+        terms = []
+        cur = self.head
+        while cur:
+            c, e = cur.c, cur.e
+            sign = "" if not terms else (" + " if c > 0 else " - ")
+            if c < 0: c = -c
+            coef = "" if c == 1 and e > 0 else str(c)
+            exp = "" if e == 0 else ("x" if e == 1 else f"x^{e}")
+            terms.append(sign + coef + exp)
+            cur = cur.next
+        s = "".join(terms)
+        return s.lstrip(" +")
+
+# Example - only addition
+p1 = Poly()
+p1.add_term(3,3); p1.add_term(2,2); p1.add_term(1,1)
+
+p2 = Poly()
+p2.add_term(4,2); p2.add_term(2,1); p2.add_term(1,0)
+
+print("P1:", p1.show())
+print("P2:", p2.show())
+print("Sum:", p1.add(p2).show())
 ```
 
-**Output:** `5x^2 + 9x^1 + 7x^0`
+**Output:**
+```
+P1: 3x^3 + 2x^2 + x
+P2: 4x^2 + 2x + 1
+Sum: 3x^3 + 6x^2 + 3x + 1
+```
+
 
 ### 2. Stack Operations (List)
 
