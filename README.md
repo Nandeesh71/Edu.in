@@ -54,24 +54,39 @@ print_poly(result)
 
 **Output:** `5x^2 + 9x^1 + 7x^0`
 
-### 2. Stack using List
+### 2. Stack Operations (List)
 
 ```python
-stack = []
-stack.append(10)  # push
-stack.append(20)
-stack.append(30)
-print("Stack:", stack)
-print("Pop:", stack.pop())
-print("Stack:", stack)
+class Stack:
+    def __init__(self):
+        self.s = []
+
+    def push(self, x):
+        self.s.append(x)
+
+    def pop(self):
+        return self.s.pop() if self.s else None
+
+    def peek(self):
+        return self.s[-1] if self.s else None
+
+s = Stack()
+s.push(10); s.push(20); s.push(30)
+print(s.peek())
+print(s.pop())
+print(s.pop())
+print(s.pop())
+print(s.pop())  # None
 ```
 
-**Output:**
+*OUTPUT*
+```30
+30
+20
+10
+None
 ```
-Stack: [10, 20, 30]
-Pop: 30
-Stack: [10, 20]
-```
+
 
 ### 3. Postfix Evaluation using Stack
 
