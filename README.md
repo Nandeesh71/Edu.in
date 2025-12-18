@@ -289,20 +289,37 @@ print(dijkstra(graph, 0))
 
 **Output:** `[0, 4, 5]`
 
-### 10. Sorting Algorithms (Quick Sort)
+### 10. Sorting Algorithms 
 
 ```python
-def quicksort(arr):
-    if len(arr) <= 1: return arr
-    pivot = arr[0]
-    left = [x for x in arr[1:] if x < pivot]
-    right = [x for x in arr[1:] if x >= pivot]
-    return quicksort(left) + [pivot] + quicksort(right)
+def buble_sort(a):
+    for i in range(len(a)):
+        for j in range(len(a)-i-1):
+            if a[j] > a[j+1]: a[j],a[j+1] = a[j+1],a[j]
+    return a
 
-print(quicksort([64, 34, 25, 12, 22, 11, 90]))
+def selection_sort(a):
+    for i in range(len(a)):
+        m = i
+        for j in range(i+1,len(a)):
+            if a[j] < a[m]: m = j
+        a[i],a[m] = a[m],a[i]
+    return a
+
+def insertion_sort(a):
+    for i in range(1,len(a)):
+        k = a[i]; j = i-1
+        while j >=0 and a[j] > k:
+            a[j+1] = a[j]; j -=1
+        a[j+1] = k
+    return a
+
+d = [64,25,12,22,11]
+print(buble_sort(d[:]), selection_sort(d[:]), insertion_sort(d[:]))
 ```
 
-**Output:** `[11, 12, 22, 25, 34, 64, 90]`
+
+**Output:** `[11, 12, 22, 25, 64]`
 
 ### 11. Linear & Binary Search
 
