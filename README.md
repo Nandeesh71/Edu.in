@@ -427,3 +427,5 @@ print("Quadratic:", ht.table)
 Linear: [10, 22, 31, 4, None, None, None]
 Quadratic: [10, 22, 31, None, 4, None, None]
 ```
+
+🤝 https://chatgpt.com/share/69440df2-df4c-800b-93d1-89422873ec1f ...🖇️ 
