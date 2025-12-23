@@ -1,5 +1,5 @@
 # Module I: Database Design
-
+-------------------------------------------------------------------------------------------------------------------------
 ## a) Data Definition Language - Create, Describe, Alter, Truncate, Drop
 
 ### i) Create the employee table with the following columns (EMP ID, EMP NAME, EMP AGE)
