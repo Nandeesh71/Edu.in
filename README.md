@@ -4,7 +4,7 @@ Warning
 
 ``` sql
 CREATE DATABASE DBMS_Lab_Exam;
-USE DBMS_Lab-Exam;
+USE DBMS_Lab_Exam;
 ```
 ⚠️ Skipping this step will cause errors.
 
