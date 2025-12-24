@@ -1,3 +1,14 @@
+Warning
+⚠️ Create and use the schema before running any SQL commands.
+
+
+``` sql
+CREATE DATABASE DBMS_Lab_Exam;
+USE DBMS_Lab-Exam;
+```
+⚠️ Skipping this step will cause errors.
+
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 🤝 https://chatgpt.com/s/t_694ad9ce2c188191bb418b85abf26ead 🖇️
