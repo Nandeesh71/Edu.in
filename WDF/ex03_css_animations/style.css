@@ -1,0 +1,32 @@
+/* Animation Example */
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: tomato;
+  position: relative;
+  animation-name: moveBox;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes moveBox {
+  from {
+    left: 0px;
+    background-color: tomato;
+  }
+  to {
+    left: 300px;
+    background-color: teal;
+  }
+}
+
+/* Multiple Column Layout */
+.columns {
+  column-count: 3;
+  column-gap: 30px;
+  column-rule: 2px solid gray;
+  font-size: 16px;
+  text-align: justify;
+  padding: 10px;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ex16-nodejs-mongodb",
+  "version": "1.0.0",
+  "description": "Node.js program to connect MongoDB and retrieve data",
+  "main": "fetchStudents.js",
+  "scripts": {
+    "start": "node fetchStudents.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.0.0"
+  }
+}

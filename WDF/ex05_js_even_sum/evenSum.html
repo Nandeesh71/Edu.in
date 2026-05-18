@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sum of Even Numbers</title>
+</head>
+<body>
+  <h2>Sum of Even Numbers in an Array</h2>
+  <script>
+    // Function to calculate sum of even numbers
+    function sumOfEvenNumbers(numbers) {
+      let sum = 0;
+      for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] % 2 === 0) {
+          sum += numbers[i];
+        }
+      }
+      return sum;
+    }
+
+    // Array of numbers
+    let numArray = [10, 15, 20, 25, 30, 35];
+
+    // Function call
+    let result = sumOfEvenNumbers(numArray);
+
+    document.write("Array Elements: " + numArray + "<br>");
+    document.write("Sum of Even Numbers: " + result);
+  </script>
+</body>
+</html>
