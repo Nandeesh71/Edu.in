@@ -1,5 +1,4 @@
 # Ex No 14 - MongoDB Installation and Database Creation
-
 ## Steps
 
 ### 1. Install MongoDB

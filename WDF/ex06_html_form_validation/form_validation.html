@@ -1,3 +1,27 @@
+# Ex 06 – HTML Form Design with Validation
+
+## AIM
+To design an HTML form that collects Name, Email, and Age with built-in HTML5 validation.
+
+## Procedure
+1. Create `form.html` with a `<form>` element.
+2. Add `type="text"` for Name, `type="email"` for Email, `type="number"` for Age.
+3. Use `required` on all fields to prevent empty submission.
+4. Set `min="1"` and `max="120"` on Age to restrict valid range.
+5. Open in browser and try submitting empty or invalid data to see validation messages.
+
+### Validation Attributes Used
+| Attribute | Purpose |
+|-----------|---------|
+| `required` | Field must not be empty |
+| `type="email"` | Auto-validates email format |
+| `min` / `max` | Restricts number range |
+| `placeholder` | Shows hint text |
+
+## Output
+A form with three fields. The browser automatically shows error messages if fields are empty or have invalid values on submit.
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
