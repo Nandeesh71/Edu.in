@@ -54,6 +54,7 @@ Once your environment is active—indicated by `(myenv)` appearing at the start 
 
 ```bash
 pip install nltk scikit-learn gensim matplotlib pandas deep-translator textblob
+python -m nltk.downloader all
 ```
 
 ---
