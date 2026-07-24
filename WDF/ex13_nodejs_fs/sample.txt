@@ -1,2 +1,0 @@
-Welcome to Node.js File System Module.
-This is a sample text file.
