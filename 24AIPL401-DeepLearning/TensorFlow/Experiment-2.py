@@ -22,9 +22,8 @@
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten
+from tensorflow.keras.layers import Dense, Flatten, Dropout
 import matplotlib.pyplot as plt
-from tensorflow.keras.layers import Dropout
 
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 

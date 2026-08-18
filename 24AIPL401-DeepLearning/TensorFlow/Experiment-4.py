@@ -21,6 +21,8 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_lfw_people
 from sklearn.model_selection import train_test_split
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 
 lfw = fetch_lfw_people(min_faces_per_person=70, resize=0.5, color=False)
 
@@ -43,14 +45,14 @@ X_train, X_test, y_train, y_test = train_test_split(
 print("\nTraining images:", len(X_train))
 print("Testing images:", len(X_test))
 
-model = tf.keras.Sequential([
-    tf.keras.layers.Conv2D(32, (3,3), activation="relu", input_shape=(62,47,1)),
-    tf.keras.layers.MaxPooling2D((2,2)),
-    tf.keras.layers.Conv2D(64, (3,3), activation="relu"),
-    tf.keras.layers.MaxPooling2D((2,2)),
-    tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(128, activation="relu"),
-    tf.keras.layers.Dense(len(lfw.target_names), activation="softmax")
+model = Sequential([
+    Conv2D(32, (3,3), activation="relu", input_shape=(62,47,1)),
+    MaxPooling2D((2,2)),
+    Conv2D(64, (3,3), activation="relu"),
+    MaxPooling2D((2,2)),
+    Flatten(),
+    Dense(128, activation="relu"),
+    Dense(len(lfw.target_names), activation="softmax")
 ])
 
 model.summary()
