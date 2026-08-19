@@ -115,7 +115,7 @@ nano lendi.txt
 ```
 
 ``` bash
-hdfs dfs –copy FromLocal lendi.txt /csedir/
+hdfs dfs –copyFromLocal lendi.txt /csedir/
 ```
 
 ``` bash
