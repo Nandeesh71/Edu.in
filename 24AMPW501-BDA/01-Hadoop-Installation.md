@@ -149,7 +149,7 @@ stop-all.sh
 ```
 
 ``` bash
-ssh-copy-id –I $HOME/.ssh/id_rsa.pub lendi@l5sys24
+ssh-copy-id –i $HOME/.ssh/id_rsa.pub lendi@l5sys24
 ```
 
 ``` bash
